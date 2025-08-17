@@ -48,10 +48,17 @@ const Dashboard = () => {
             if (!user?.primaryEmailAddress?.emailAddress) return;
 
             try {
-                const res = await axios.post(`${BASE_URL_AGRI}/registration/get-user-deatils`, {
-                    user_id: user?.primaryEmailAddress?.emailAddress
+                const res = await fetch(`${BASE_URL_AGRI}/registration/get-user-deatils`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_id: user?.primaryEmailAddress?.emailAddress
+                    })
                 });
-                const data = res.data.data;
+                const response = await res.json();
+                const data = response.data;
                 console.log(data);
 
                 setFormData({

@@ -15,6 +15,7 @@ import FullPageLoader from "@/components/FullPageLoader";
 const Insurance = () => {
   const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
   const BASE_URL2 = import.meta.env.VITE_BACKEND_BASE_URL2;
+  const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
   const { t } = useTranslation();
   const appContext = useApp();
   const { user } = useUser();
@@ -53,7 +54,7 @@ const Insurance = () => {
     const fetchLearningModules = async () => {
       if (currentProduct) {
         console.log(currentProduct);
-        axios.post(`${BASE_URL2}/api/yt-search`, {
+        axios.post(`${BASE_URL_AGRI}/fin/yt-search`, {
           query: `Search top videos in ${langMap[appContext.language]} language on "${currentProduct.title}" for financial awareness and learning.`
         }).then((res) => {
           console.log(res.data);
