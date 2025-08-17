@@ -21,6 +21,7 @@ interface ChatbotProps {
 
 export const Chatbot: React.FC<ChatbotProps> = ({ onNavigate }) => {
     const BASE_URL2 = import.meta.env.VITE_BACKEND_BASE_URL2;
+    const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
@@ -119,11 +120,11 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onNavigate }) => {
         setIsProcessing(true);
         const lowerMessage = userMessage.toLowerCase();
 
-        const instructions = [];
-        instructions.push(lowerMessage);
+        // const instructions = [];
+        // instructions.push(lowerMessage);
 
 
-        console.log(instructions, user.username);
+        // console.log(instructions, user.username);
 
         if (!user) {
             toast({
@@ -134,19 +135,13 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onNavigate }) => {
             return;
         }
 
-        axios.post(`${BASE_URL2}/api/home/query`, {
-            user_id: user?.username,
-            instructions
+        axios.post(`${BASE_URL_AGRI}/chat/general-chat`, {
+            // user_id: user?.username,
+            query: lowerMessage
         }).then((res) => {
-            console.log(res);
-            const response = res.data;
+            const response = res.data.response;
             setIsProcessing(false);
-            if(response.component_id !== undefined) {
-                onNavigate(response.component_id);
-            }
-            else {
-                addMessage('bot', response.message);
-            }
+            addMessage('bot', response);
         }).catch((err) => {
             console.log(err);
         })
@@ -215,8 +210,10 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onNavigate }) => {
                                 className={`px-4 py-2 rounded-xl shadow-sm text-sm leading-relaxed ${message.type === 'user'
                                     ? 'bg-blue-500 text-white'
                                     : 'bg-white text-gray-800 border border-gray-200'}`}
+                                    dangerouslySetInnerHTML={{
+    __html: message.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  }}
                             >
-                                <p>{message.content}</p>
                             </div>
                             <div className="flex items-center gap-2 mt-1">
                                 <span className="text-xs text-gray-400">
@@ -296,7 +293,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onNavigate }) => {
                 </div>
 
                 <p className="text-xs text-gray-500 mt-2 text-center italic">
-                    💡 Try: "help", "navigate to loans", "show me features", or "go to dashboard"
+                    💡 Try: "explain crop insurance benefits" or "guide me on soil testing"
                 </p>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bell, MapPin, Calendar, Sprout } from "lucide-react";
+import { Bell, MapPin, Calendar, Sprout, Camera, Upload } from "lucide-react";
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -17,6 +17,9 @@ import {
   Legend,
 } from 'chart.js';
 import axios from 'axios';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
+import { toast } from '@/hooks/use-toast';
 
 ChartJS.register(
   CategoryScale,
@@ -48,7 +51,80 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
   const [alerts, setAlerts] = useState([]);
   const [sensorGraphData, setSensorGraphData] = useState([]);
   const [weatherGraphData, setWeatherGraphData] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+  const [selectedNotification, setSelectedNotification] = useState<any>(null);
+  const [showComments, setShowComments] = useState(false);
+  const [showResolveModal, setShowResolveModal] = useState(false);
+  const [resolveComment, setResolveComment] = useState("");
+
   const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newImages = Array.from(files).map(file => URL.createObjectURL(file));
+      setUploadedImages(newImages);
+    }
+  };
+
+  const handleProcessImage = async () => {
+    if (uploadedImages.length === 0) {
+      toast({
+        title: "Please upload a image first to process",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("sensor_hub_id", field.hubCode);
+
+      const response = await fetch(uploadedImages[0]);
+      const blob = await response.blob();
+      formData.append("image", blob, "image.png");
+
+      const res = await fetch(`${BASE_URL_AGRI}/alert/process-disease-image`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to process image");
+      }
+
+      const result = await res.json();
+      toast({
+        title: "File has been processed successfully"
+      });
+    } catch (error) {
+      console.error("Error processing image:", error);
+      toast({
+        title: "Something went wrong while processing the image",
+        variant: "destructive"
+      });
+    }
+  };
+
+
+  const handleCommentsClick = (notification: any) => {
+    setSelectedNotification(notification);
+    setShowComments(true);
+  };
+
+  const handleResolveClick = (notification: any) => {
+    setSelectedNotification(notification);
+    setShowResolveModal(true);
+  };
+
+  const handleResolveSubmit = () => {
+    if (selectedNotification && resolveComment.trim()) {
+      console.log("Calling api to resolve alerts");
+      setResolveComment("");
+      setShowResolveModal(false);
+      setSelectedNotification(null);
+    }
+  };
 
   useEffect(() => {
     setAlerts([]);
@@ -409,6 +485,45 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
               </div>
             </CardContent>
           </Card>
+
+          {/* Photo Upload Section */}
+          <div className="mt-6 p-4 border-2 border-dashed border-gray-300 rounded-lg">
+            <div className="text-center">
+              <Camera className="mx-auto h-8 w-8 text-gray-400 mb-2" />
+              <p className="text-sm font-medium text-gray-600 mb-2">Upload Disease Pictures</p>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+                id="image-upload"
+              />
+              <Button asChild variant="outline" size="sm">
+                <label htmlFor="image-upload" className="cursor-pointer flex items-center gap-2">
+                  <Upload className="h-4 w-4" />
+                  Choose Images
+                </label>
+              </Button>
+              <Button asChild variant="green" size="sm" className='ml-4' onClick={handleProcessImage}>
+                <label className="cursor-pointer flex items-center gap-2">
+                  Process
+                </label>
+              </Button>
+            </div>
+
+            {uploadedImages.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {uploadedImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Disease picture ${index + 1}`}
+                    className="w-full h-20 object-cover rounded border"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
           <h2>Sensor Data</h2>
           <Card>
