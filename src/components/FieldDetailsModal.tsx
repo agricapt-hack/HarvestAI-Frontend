@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bell, MapPin, Calendar, Sprout, Camera, Upload } from "lucide-react";
+import { Bell, MapPin, Calendar, Sprout, Camera, Upload, MessageCircle, CheckCircle } from "lucide-react";
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -20,6 +20,7 @@ import axios from 'axios';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { toast } from '@/hooks/use-toast';
+import { Textarea } from './ui/textarea';
 
 ChartJS.register(
   CategoryScale,
@@ -119,7 +120,16 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
 
   const handleResolveSubmit = () => {
     if (selectedNotification && resolveComment.trim()) {
-      console.log("Calling api to resolve alerts");
+      axios.post(`${BASE_URL_AGRI}/alert/change-alert-status`, {
+        alert_id: selectedNotification.alert_id,
+        resolved: true,
+        new_comment: resolveComment,
+      }).then((res) => {
+        console.log(res.data);
+        toast({
+          title: "Alert resolved successfully",
+        });
+      })
       setResolveComment("");
       setShowResolveModal(false);
       setSelectedNotification(null);
@@ -480,7 +490,29 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
                       <p className="text-sm">{notification.action_body}</p>
                     </div>
                     <p className="absolute bottom-2 right-2 text-xs text-gray-500">{formatDateTime(notification.timestamp)}</p>
+                    <div className="flex gap-2 absolute top-2 right-2">
+                      <div
+                        // size="sm"
+                        // variant="outline"
+                        onClick={() => handleCommentsClick(notification)}
+                        className="flex items-center gap-1 cursor-pointer"
+                      >
+                        {notification.comments.length > 0 && <MessageCircle className="h-4 w-4" />}
+                        {/* {notification.comments.length > 0 && `(${notification.comments.length})`} */}
+                      </div>
+                      {!notification.resolved && (
+                        <div
+                          // size="sm"
+                          // variant="outline"
+                          onClick={() => handleResolveClick(notification)}
+                          className="flex items-center gap-1 cursor-pointer"
+                        >
+                          <CheckCircle className="h-4 w-4" />
+                        </div>
+                      )}
+                    </div>
                   </div>
+
                 ))}
               </div>
             </CardContent>
@@ -611,6 +643,59 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
           </div>
         </div>
       </DialogContent>
+      {/* Comments Modal */}
+      <Dialog open={showComments} onOpenChange={() => setShowComments(false)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Comments</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 max-h-60 overflow-y-auto">
+            {selectedNotification?.comments.length > 0 ? (
+              selectedNotification.comments.map((comment: any) => (
+                <div key={comment.id} className="p-3 bg-gray-50 rounded-lg">
+                  <p className="text-sm">{comment}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500 text-center py-4">No comments found</p>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Resolve Modal */}
+      <Dialog open={showResolveModal} onOpenChange={() => setShowResolveModal(false)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Resolve Notification</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              Add a comment about how this alert was resolved:
+            </p>
+            <Textarea
+              placeholder="Enter resolution comment..."
+              value={resolveComment}
+              onChange={(e) => setResolveComment(e.target.value)}
+              rows={3}
+            />
+            <div className="flex gap-2 justify-end">
+              <Button
+                variant="outline"
+                onClick={() => setShowResolveModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleResolveSubmit}
+                disabled={!resolveComment.trim()}
+              >
+                Resolve
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Dialog>
   );
 };
