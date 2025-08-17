@@ -74,6 +74,19 @@ export default function FieldManagement() {
         // },
     ]);
 
+    function formatDateTime(timestamp: string) {
+    const d = new Date(timestamp);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0"); // month is 0-indexed
+    const year = d.getFullYear();
+
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    const seconds = String(d.getSeconds()).padStart(2, "0");
+
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  }
+
     useEffect(() => {
         const fetchFieldsByUserEmail = async () => {
             axios.post(`${BASE_URL_AGRI}/field/get-all-fields-by-userid`, {
@@ -85,7 +98,7 @@ export default function FieldManagement() {
                     fieldId: field.field_id,
                     fieldName: field.field_name,
                     cropName: field.crop_type,
-                    timestamp: field.timestamp || "",
+                    timestamp: field.created_at || "",
                     notifications: 0,
                     startedInfo: field.user_texts?.[0] || "",
                     currentStatus: field.user_texts?.[1] || "",
@@ -146,7 +159,8 @@ export default function FieldManagement() {
         //     location: location,
         // };
         const payload = {
-            field_id: `F${String(fields.length + 1).padStart(3, '0')}`,
+            // field_id: `F${String(fields.length + 1).padStart(3, '0')}`,
+            field_id: `F${Math.random().toString(36).substring(2, 10)}`,
             user_id: user?.primaryEmailAddress?.emailAddress,
             field_name: fieldName.trim(),
             crop_type: cropName.trim(),
@@ -206,7 +220,7 @@ export default function FieldManagement() {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
+                            {/* <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="fieldId" className="text-right">
                                     Field ID
                                 </Label>
@@ -216,7 +230,7 @@ export default function FieldManagement() {
                                     className="col-span-3"
                                     disabled
                                 />
-                            </div>
+                            </div> */}
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="fieldName" className="text-right">
                                     Field Name
@@ -339,8 +353,8 @@ export default function FieldManagement() {
                             <TableHead className="font-semibold">Field ID</TableHead>
                             <TableHead className="font-semibold">Field Name</TableHead>
                             <TableHead className="font-semibold">Crop Name</TableHead>
-                            <TableHead className="font-semibold">Timestamp</TableHead>
-                            <TableHead className="font-semibold">Notifications</TableHead>
+                            <TableHead className="font-semibold">Created At</TableHead>
+                            {/* <TableHead className="font-semibold">Notifications</TableHead> */}
                             <TableHead className="font-semibold">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -354,13 +368,13 @@ export default function FieldManagement() {
                                 <TableCell className="font-medium">{field.fieldId}</TableCell>
                                 <TableCell className="font-medium">{field.fieldName}</TableCell>
                                 <TableCell>{field.cropName}</TableCell>
-                                <TableCell>{field.timestamp.toLocaleString()}</TableCell>
-                                <TableCell>
+                                <TableCell>{field.timestamp && formatDateTime(field.timestamp)}</TableCell>
+                                {/* <TableCell>
                                     <Badge variant="secondary" className="flex items-center gap-1">
                                         <Bell className="h-3 w-3" />
                                         {field.notifications}
                                     </Badge>
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell>
                                     <Button
                                         variant="destructive"
