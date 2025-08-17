@@ -46,11 +46,11 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
   //   { id: 3, type: "alert", message: "High humidity levels", time: "1 day ago" },
   // ];
   const [alerts, setAlerts] = useState([]);
-  const [graphData, setGraphData] = useState([]);
+  const [sensorGraphData, setSensorGraphData] = useState([]);
+  const [weatherGraphData, setWeatherGraphData] = useState([]);
   const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
 
   useEffect(() => {
-    console.log(field);
     setAlerts([]);
     axios.post(`${BASE_URL_AGRI}/alert/get-alerts-by-hub`, {
       sensor_hub_id: field.hubCode
@@ -58,11 +58,10 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
       const sorted = res.data.alerts
         .sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()) // sort desc
       // .slice(0, 10);
-      console.log(sorted);
       setAlerts(sorted);
     });
 
-    setGraphData([]);
+    setSensorGraphData([]);
     axios.post(`${BASE_URL_AGRI}/field/get-sensor-data-by-hubid`, {
       sensor_hub_id: field.hubCode
     }).then((res) => {
@@ -76,30 +75,48 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
         });
         return obj;
       });
-      console.log(transformedGraphResponse);
-      setGraphData(
+      setSensorGraphData(
         transformedGraphResponse
           .sort((a: any, b: any) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()) // ascending
-          .slice(-10)
+          .slice(-15)
       );
+    });
+
+    setWeatherGraphData([]);
+    axios.post(`${BASE_URL_AGRI}/field/get-weather-data-by-hubid`, {
+      sensor_hub_id: field.hubCode
+    }).then((res) => {
+      const weatherResponse = res.data.weather_data;
+      const forecasts = weatherResponse.forecasts;
+      const recents = weatherResponse.recents;
+      const mergedWeatherResponse = [
+        ...recents,
+        ...forecasts.slice(1),
+      ];
+
+      setWeatherGraphData(mergedWeatherResponse);
     });
 
   }, [field])
 
   // Chart data for Humidity Levels
   const humidityTemperatureData = {
-    labels: graphData.map((data) => data.timestamp),
+    // labels: sensorGraphData.map((data) => data.timestamp),
+    labels: sensorGraphData.map((data) => {
+      const date = new Date(data.timestamp);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }),
     datasets: [
       {
         label: 'Humidity (%)',
-        data: graphData.map((data) => data.humidity),
+        data: sensorGraphData.map((data) => data.humidity),
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(34, 197, 94, 0.6)',
         tension: 0.4,
       },
       {
         label: 'Temperature (C)',
-        data: graphData.map((data) => data.temperature),
+        data: sensorGraphData.map((data) => data.temperature),
         backgroundColor: 'rgba(239, 68, 68, 0.6)',
         borderColor: 'rgb(239, 68, 68)',
         borderWidth: 1,
@@ -109,11 +126,15 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
 
   // Chart data for Water Levels
   const phData = {
-    labels: graphData.map((data) => data.timestamp),
+    // labels: sensorGraphData.map((data) => data.timestamp),
+    labels: sensorGraphData.map((data) => {
+      const date = new Date(data.timestamp);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }),
     datasets: [
       {
         label: 'pH Level',
-        data: graphData.map((data) => data.ph_level),
+        data: sensorGraphData.map((data) => data.ph_level),
         backgroundColor: 'rgba(59, 130, 246, 0.6)', // blue
         borderColor: 'rgb(59, 130, 246)',
         borderWidth: 1,
@@ -121,27 +142,31 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
     ],
   };
 
-  // Chart data for Na-K Levels
+  // Chart data for NPK Levels
   const npkData = {
-    labels: graphData.map((data) => data.timestamp),
+    // labels: sensorGraphData.map((data) => data.timestamp),
+    labels: sensorGraphData.map((data) => {
+      const date = new Date(data.timestamp);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }),
     datasets: [
       {
         label: 'Nitrogen (N)',
-        data: graphData.map((data) => data.nitrogen_level),
+        data: sensorGraphData.map((data) => data.nitrogen_level),
         backgroundColor: 'rgba(34, 197, 94, 0.6)', // green
         borderColor: 'rgb(34, 197, 94)',
         borderWidth: 1,
       },
       {
         label: 'Phosphorus (P)',
-        data: graphData.map((data) => data.phosphorus_level),
+        data: sensorGraphData.map((data) => data.phosphorus_level),
         backgroundColor: 'rgba(59, 130, 246, 0.6)', // blue
         borderColor: 'rgb(59, 130, 246)',
         borderWidth: 1,
       },
       {
         label: 'Potassium (K)',
-        data: graphData.map((data) => data.potassium_level),
+        data: sensorGraphData.map((data) => data.potassium_level),
         backgroundColor: 'rgba(249, 115, 22, 0.6)', // orange
         borderColor: 'rgb(249, 115, 22)',
         borderWidth: 1,
@@ -161,6 +186,104 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
         beginAtZero: true,
       },
     },
+  };
+
+  // Chart data for cloud, humidity, precipitation forecasts
+  const cloudHumidityPrecipitationData = {
+    labels: weatherGraphData.map((data) => data.day),
+    datasets: [
+      {
+        label: 'Cloud Cover',
+        data: weatherGraphData.map((data) => data.cloud_cover),
+        backgroundColor: 'rgba(34, 197, 94, 0.6)', // green
+        borderColor: 'rgb(34, 197, 94)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Humidity',
+        data: weatherGraphData.map((data) => data.humidity),
+        backgroundColor: 'rgba(59, 130, 246, 0.6)', // blue
+        borderColor: 'rgb(59, 130, 246)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Precipitation (Avg)',
+        data: weatherGraphData.map((data) => (data.precipitation_probability_max + data.precipitation_probability_min) / 2),
+        backgroundColor: 'rgba(239, 68, 68, 0.6)', // red
+        borderColor: 'rgb(239, 68, 68)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart data for Rain forecasts
+  const rainData = {
+    labels: weatherGraphData.map((data) => data.day),
+    datasets: [
+      {
+        label: 'Rain',
+        data: weatherGraphData.map((data) => data.rain),
+        backgroundColor: 'rgba(34, 197, 94, 0.6)', // green
+        borderColor: 'rgb(34, 197, 94)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Rain Intensity',
+        data: weatherGraphData.map((data) => data.rain_intensity),
+        backgroundColor: 'rgba(59, 130, 246, 0.6)', // blue
+        borderColor: 'rgb(59, 130, 246)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Rain (Avg)',
+        data: weatherGraphData.map((data) => (data.rain_max + data.rain_min) / 2),
+        backgroundColor: 'rgba(239, 68, 68, 0.6)', // red
+        borderColor: 'rgb(239, 68, 68)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart data for Temperature forecasts
+  const tempData = {
+    labels: weatherGraphData.map((data) => data.day),
+    datasets: [
+      {
+        label: 'Min Temp (C)',
+        data: weatherGraphData.map((data) => data.temp_min),
+        backgroundColor: 'rgba(249, 115, 22, 0.6)', // orange
+        borderColor: 'rgb(249, 115, 22)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Max Temp (C)',
+        data: weatherGraphData.map((data) => data.temp_max),
+        backgroundColor: 'rgba(239, 68, 68, 0.6)', // red
+        borderColor: 'rgb(239, 68, 68)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart data for Wind speed forecasts
+  const windData = {
+    labels: weatherGraphData.map((data) => data.day),
+    datasets: [
+      {
+        label: 'Wind Speed',
+        data: weatherGraphData.map((data) => data.wind_speed),
+        backgroundColor: 'rgba(59, 130, 246, 0.6)', // blue
+        borderColor: 'rgb(59, 130, 246)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Max Wind Gust',
+        data: weatherGraphData.map((data) => data.wind_gust_max),
+        backgroundColor: 'rgba(239, 68, 68, 0.6)', // red
+        borderColor: 'rgb(239, 68, 68)',
+        borderWidth: 1,
+      },
+    ],
   };
 
   function formatDateTime(timestamp: string) {
@@ -291,7 +414,7 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
           <Card>
             <CardHeader>
               <CardTitle>NPK Levels</CardTitle>
-              <CardDescription>Last 10 Nitrogen, Phosphorus & Potassium levels in soil</CardDescription>
+              <CardDescription>Last 15 Nitrogen, Phosphorus & Potassium levels in soil</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center">
               <Bar data={npkData} options={chartOptions} />
@@ -301,7 +424,7 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
             <Card>
               <CardHeader>
                 <CardTitle>Humidity & Temperature</CardTitle>
-                <CardDescription>Last 10 humidity & Temperature measurements</CardDescription>
+                <CardDescription>Last 15 humidity & Temperature measurements</CardDescription>
               </CardHeader>
               <CardContent>
                 <Bar data={humidityTemperatureData} options={chartOptions} />
@@ -311,10 +434,63 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
             <Card>
               <CardHeader>
                 <CardTitle>pH Levels</CardTitle>
-                <CardDescription>Last 10 pH measurements</CardDescription>
+                <CardDescription>Last 15 pH measurements</CardDescription>
               </CardHeader>
               <CardContent>
                 <Bar data={phData} options={chartOptions} />
+              </CardContent>
+            </Card>
+          </div>
+
+          <h2>Weather Forecast</h2>
+          {/* <Card>
+            <CardHeader>
+              <CardTitle>Rain</CardTitle>
+              <CardDescription>7 Days Weather Forecast</CardDescription>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <Bar data={cloudHumidityPrecipitationData} options={chartOptions} />
+            </CardContent>
+          </Card> */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Cloud, Humidity & Precipitation</CardTitle>
+                <CardDescription>7 days forecast of cloud cover, humidity & precipitation</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Bar data={cloudHumidityPrecipitationData} options={chartOptions} />
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Temperature</CardTitle>
+                <CardDescription>7 days temperature forecast</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Bar data={tempData} options={chartOptions} />
+              </CardContent>
+            </Card>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Rain</CardTitle>
+                <CardDescription>7 days rain forecast</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Bar data={rainData} options={chartOptions} />
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Wind Speed</CardTitle>
+                <CardDescription>7 days wind speed forecast</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Bar data={windData} options={chartOptions} />
               </CardContent>
             </Card>
           </div>
