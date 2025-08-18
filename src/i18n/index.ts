@@ -22,6 +22,8 @@ const resources = {
       "aiSupport": "AI Support",
 
       "insurance": "Insurance",
+      "marketplace": "Marketplace",
+      "marketplaceDesc": "Find seeds, fertilizers, agri services, and more!",
       "activityPlanner": "MSME Planner",
       "recommendBankExperts": "Recommend Bank Experts",
 
@@ -140,6 +142,8 @@ const resources = {
       "aiSupport": "एआई सहायता",
 
       "insurance": "बीमा",
+      "marketplace": "बाज़ार",
+      "marketplaceDesc": "बीज, उर्वरक, कृषि सेवाएँ और बहुत कुछ खोजें!",
       "activityPlanner": "एमएसएमई योजना नियोजक",
       "recommendBankExperts": "बैंक विशेषज्ञों की सिफारिश करें",
 
@@ -257,6 +261,8 @@ const resources = {
       "aiSupport": "এআই সহায়তা",
 
       "insurance": "বীমা",
+      "marketplace": "বাজার",
+      "marketplaceDesc": "বীজ, সার, কৃষি পরিষেবা এবং আরও অনেক কিছু খুঁজে পান!",
       "activityPlanner": "এমএসএমই পরিকল্পনা প্রস্তুতকারী",
       "recommendBankExperts": "ব্যাংক বিশেষজ্ঞ সুপারিশ করুন",
 
@@ -375,6 +381,8 @@ const resources = {
       "aiSupport": "एआय सहाय्य",
 
       "insurance": "विमा",
+      "marketplace": "बाजारपेठ",
+      "marketplaceDesc": "बियाणे, खत, शेती सेवा आणि बरेच काही शोधा!",
       "activityPlanner": "एमएसएमई योजना नियोजक",
       "recommendBankExperts": "बँक तज्ञांची शिफारस करा",
 
@@ -492,6 +500,8 @@ const resources = {
       "aiSupport": "ಎಐ ಬೆಂಬಲ",
 
       "insurance": "ವಿಮೆ",
+      "marketplace": "ಮಾರುಕಟ್ಟೆ",
+      "marketplaceDesc": "ಬೀಜಗಳು, ರಾಸಾಯನಿಕ ಗೊಬ್ಬರ, ಕೃಷಿ ಸೇವೆಗಳು ಮತ್ತು ಇನ್ನಷ್ಟು ಹುಡುಕಿ!",
       "activityPlanner": "ಎಂಎಸ್‌ಎಂಇ ಯೋಜನಾ ಯೋಜಕ",
       "recommendBankExperts": "ಬ್ಯಾಂಕ್ ತಜ್ಞರನ್ನು ಶಿಫಾರಸು ಮಾಡಿ",
 
