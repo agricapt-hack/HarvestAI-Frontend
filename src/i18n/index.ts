@@ -38,18 +38,18 @@ const resources = {
       "productsDescription": "Click on any product to start an interactive conversation and discover how it works for your unique situation",
 
       // loan products
-      "homeLoan": "Home Loan",
-      "homeLoanDesc": "Explore a diverse array of home loan options tailored to meet your specific needs",
-      "personalLoan": "Personal Loan",
-      "personalLoanDesc": "Secure a personal loan for holidays, home renovations all at compelling interest rates",
-      "businessLoan": "Business Loan",
-      "businessLoanDesc": "Expand your business with minimal paperwork and rapid approval processes",
-      "educationLoan": "Education Loan",
-      "educationLoanDesc": "Access loans for various educational courses with straightforward loan disbursement",
-      "goldLoan": "Gold Loan",
-      "goldLoanDesc": "Get quick funds by pledging your gold at attractive interest rates",
-      "fdLoan": "Loan Against Fixed Deposit",
-      "fdLoanDesc": "Get loans against your fixed deposits with attractive interest rates",
+      "kisanCreditCardLoan": "Kisan Credit Card (KCC)",
+      "kisanCreditCardLoanDesc": "Provides short-term credit for crop production, purchase of seeds, fertilizers, and other farm inputs with flexible repayment linked to crop harvesting.",
+      "tractorMachineryLoan": "Tractor & Farm Machinery Loan",
+      "tractorMachineryLoanDesc": "Helps farmers purchase tractors, harvesters, irrigation pumps, and modern equipment to improve productivity and reduce manual labor.",
+      "cropLoan": "Crop Loan",
+      "cropLoanDesc": "Offers quick finance for seasonal crop cultivation expenses such as seeds, fertilizers, pesticides, and labor costs, with repayment due after harvest.",
+      "dairyLivestockLoan": "Dairy & Livestock Loan",
+      "dairyLivestockLoanDesc": "Supports farmers in setting up or expanding dairy farms, poultry, goatery, or fisheries by providing funds for livestock purchase and maintenance.",
+      "farmDevelopmentLoan": "Farm Development Loan",
+      "farmDevelopmentLoanDesc": "Funds long-term agricultural investments like land leveling, fencing, irrigation system installation, greenhouse construction, and orchard plantations.",
+      "agriGoldLoan": "Agri Gold Loan",
+      "agriGoldLoanDesc": "Allows farmers to avail quick loans by pledging gold ornaments, providing immediate liquidity for farm operations with minimal documentation.",
 
       // account products
       "savingsAccount": "Savings Account",
@@ -140,8 +140,8 @@ const resources = {
       "aiSupport": "एआई सहायता",
 
       "insurance": "बीमा",
-    "activityPlanner": "एमएसएमई योजना नियोजक",
-    "recommendBankExperts": "बैंक विशेषज्ञों की सिफारिश करें",
+      "activityPlanner": "एमएसएमई योजना नियोजक",
+      "recommendBankExperts": "बैंक विशेषज्ञों की सिफारिश करें",
 
       // Bank Contact
       "bankContactTitle": "बैंक विशेषज्ञों से जुड़ें",
@@ -156,18 +156,18 @@ const resources = {
       "productsDescription": "किसी भी उत्पाद पर क्लिक करके इंटरैक्टिव बातचीत शुरू करें और जानें कि यह आपकी परिस्थिति के लिए कैसे फायदेमंद है।",
 
       // loan products
-      "homeLoan": "गृह ऋण",
-      "homeLoanDesc": "आपकी ज़रूरतों के अनुसार गृह ऋण विकल्पों का व्यापक चयन खोजें।",
-      "personalLoan": "व्यक्तिगत ऋण",
-      "personalLoanDesc": "छुट्टियों या घर की मरम्मत के लिए आकर्षक ब्याज दरों पर व्यक्तिगत ऋण प्राप्त करें।",
-      "businessLoan": "व्यवसाय ऋण",
-      "businessLoanDesc": "कम कागज़ी कार्रवाई और तेज़ स्वीकृति के साथ अपने व्यवसाय का विस्तार करें।",
-      "educationLoan": "शिक्षा ऋण",
-      "educationLoanDesc": "शिक्षा के विभिन्न पाठ्यक्रमों के लिए सरल ऋण वितरण के साथ ऋण प्राप्त करें।",
-      "goldLoan": "सोने पर ऋण",
-      "goldLoanDesc": "अपने सोने को गिरवी रखकर आकर्षक ब्याज दरों पर तुरंत धन प्राप्त करें।",
-      "fdLoan": "फिक्स्ड डिपॉज़िट पर ऋण",
-      "fdLoanDesc": "अपने फिक्स्ड डिपॉज़िट पर आकर्षक ब्याज दरों पर ऋण प्राप्त करें।",
+      "kisanCreditCardLoan": "किसान क्रेडिट कार्ड (KCC)",
+      "kisanCreditCardLoanDesc": "फसल उत्पादन, बीज, उर्वरक और अन्य कृषि इनपुट की खरीद के लिए अल्पकालिक ऋण प्रदान करता है, जिसकी अदायगी फसल कटाई से जुड़ी होती है।",
+      "tractorMachineryLoan": "ट्रैक्टर और कृषि मशीनरी ऋण",
+      "tractorMachineryLoanDesc": "किसानों को ट्रैक्टर, हार्वेस्टर, सिंचाई पंप और आधुनिक उपकरण खरीदने में मदद करता है ताकि उत्पादकता बढ़ाई जा सके और श्रम कम हो।",
+      "cropLoan": "फसल ऋण",
+      "cropLoanDesc": "मौसमी फसलों की बुवाई, बीज, उर्वरक, कीटनाशक और मजदूरी खर्चों के लिए त्वरित वित्त प्रदान करता है, जिसकी अदायगी कटाई के बाद होती है।",
+      "dairyLivestockLoan": "डेयरी और पशुधन ऋण",
+      "dairyLivestockLoanDesc": "डेयरी फार्म, पोल्ट्री, बकरी पालन या मत्स्य पालन की स्थापना या विस्तार में किसानों की मदद करता है, पशु खरीद और रखरखाव के लिए धन उपलब्ध कराता है।",
+      "farmDevelopmentLoan": "फार्म विकास ऋण",
+      "farmDevelopmentLoanDesc": "भूमि समतलीकरण, बाड़बंदी, सिंचाई प्रणाली, ग्रीनहाउस निर्माण और बागवानी जैसी दीर्घकालिक कृषि निवेशों के लिए धन उपलब्ध कराता है।",
+      "agriGoldLoan": "कृषि स्वर्ण ऋण",
+      "agriGoldLoanDesc": "किसान स्वर्ण आभूषण गिरवी रखकर तुरंत ऋण प्राप्त कर सकते हैं, जिससे कृषि कार्यों के लिए तुरंत नकदी मिलती है और न्यूनतम दस्तावेज़ की आवश्यकता होती है।",
 
       // account products
       "savingsAccount": "बचत खाता",
@@ -257,8 +257,8 @@ const resources = {
       "aiSupport": "এআই সহায়তা",
 
       "insurance": "বীমা",
-    "activityPlanner": "এমএসএমই পরিকল্পনা প্রস্তুতকারী",
-    "recommendBankExperts": "ব্যাংক বিশেষজ্ঞ সুপারিশ করুন",
+      "activityPlanner": "এমএসএমই পরিকল্পনা প্রস্তুতকারী",
+      "recommendBankExperts": "ব্যাংক বিশেষজ্ঞ সুপারিশ করুন",
 
       // Bank Contact
       "bankContactTitle": "ব্যাংক বিশেষজ্ঞদের সাথে যোগাযোগ করুন",
@@ -273,18 +273,18 @@ const resources = {
       "productsDescription": "কোনও একটি পণ্যে ক্লিক করুন এবং ইন্টার‌্যাকটিভ কথোপকথনের মাধ্যমে জানুন এটি আপনার পরিস্থিতিতে কিভাবে কার্যকর হতে পারে",
 
       // loan products
-      "homeLoan": "হোম লোন",
-      "homeLoanDesc": "আপনার নির্দিষ্ট প্রয়োজনে উপযুক্ত বিভিন্ন ধরনের হোম লোন অন্বেষণ করুন",
-      "personalLoan": "পার্সোনাল লোন",
-      "personalLoanDesc": "ছুটি, বাড়ি সংস্কার ইত্যাদির জন্য আকর্ষণীয় সুদের হারে পার্সোনাল লোন নিন",
-      "businessLoan": "ব্যবসায়িক ঋণ",
-      "businessLoanDesc": "নূন্যতম কাগজপত্র এবং দ্রুত অনুমোদনের মাধ্যমে আপনার ব্যবসা বাড়ান",
-      "educationLoan": "শিক্ষা ঋণ",
-      "educationLoanDesc": "নানা শিক্ষাকোর্সের জন্য সহজ শর্তে ঋণ পান",
-      "goldLoan": "সোনার উপর ঋণ",
-      "goldLoanDesc": "আপনার সোনা জমা দিয়ে দ্রুত অর্থ পান আকর্ষণীয় সুদের হারে",
-      "fdLoan": "স্থায়ী আমানতের বিপরীতে ঋণ",
-      "fdLoanDesc": "আপনার স্থায়ী আমানতের বিপরীতে আকর্ষণীয় হারে ঋণ পান",
+      "kisanCreditCardLoan": "কিষান ক্রেডিট কার্ড (KCC)",
+      "kisanCreditCardLoanDesc": "ফসল উৎপাদন, বীজ, সার এবং অন্যান্য কৃষি উপকরণ কেনার জন্য স্বল্পমেয়াদী ঋণ প্রদান করে, যা ফসল কাটার সঙ্গে যুক্তভাবে শোধ করতে হয়।",
+      "tractorMachineryLoan": "ট্রাক্টর ও কৃষি যন্ত্রপাতি ঋণ",
+      "tractorMachineryLoanDesc": "কৃষকদের ট্রাক্টর, হারভেস্টার, সেচ পাম্প ও আধুনিক যন্ত্রপাতি কেনায় সহায়তা করে যাতে উৎপাদনশীলতা বাড়ে এবং শ্রম কমে।",
+      "cropLoan": "ফসল ঋণ",
+      "cropLoanDesc": "মৌসুমি ফসলের বীজ, সার, কীটনাশক ও শ্রম ব্যয়ের জন্য দ্রুত অর্থ প্রদান করে, যার পরিশোধ ফসল কাটার পরে করতে হয়।",
+      "dairyLivestockLoan": "ডেইরি ও পশুপালন ঋণ",
+      "dairyLivestockLoanDesc": "ডেইরি ফার্ম, পোল্ট্রি, ছাগল পালন বা মৎস্যচাষ শুরু বা সম্প্রসারণে সহায়তা করে, পশু কেনা ও রক্ষণাবেক্ষণের জন্য অর্থ প্রদান করে।",
+      "farmDevelopmentLoan": "খামার উন্নয়ন ঋণ",
+      "farmDevelopmentLoanDesc": "জমি সমতলকরণ, বেড়া দেওয়া, সেচ ব্যবস্থা, গ্রিনহাউস নির্মাণ ও ফলের বাগান তৈরির মতো দীর্ঘমেয়াদী কৃষি বিনিয়োগে অর্থ প্রদান করে।",
+      "agriGoldLoan": "কৃষি স্বর্ণ ঋণ",
+      "agriGoldLoanDesc": "কৃষকরা সোনার গয়না বন্ধক রেখে দ্রুত ঋণ পেতে পারেন, যা কৃষিকাজের জন্য তাৎক্ষণিক নগদ প্রদান করে এবং ন্যূনতম কাগজপত্রের প্রয়োজন হয়।",
 
       "lifeInsurance": "জীবন বীমা",
       "lifeInsuranceDesc": "জীবন বীমা নিয়ে পরিবারের আর্থিক নিরাপত্তা নিশ্চিত করুন",
@@ -374,8 +374,8 @@ const resources = {
       "aiSupport": "एआय सहाय्य",
 
       "insurance": "विमा",
-    "activityPlanner": "एमएसएमई योजना नियोजक",
-    "recommendBankExperts": "बँक तज्ञांची शिफारस करा",
+      "activityPlanner": "एमएसएमई योजना नियोजक",
+      "recommendBankExperts": "बँक तज्ञांची शिफारस करा",
 
       // Bank Contact
       "bankContactTitle": "बँक तज्ञांशी संपर्क साधा",
@@ -390,18 +390,18 @@ const resources = {
       "productsDescription": "कोणतेही उत्पादन निवडा आणि संवादात्मक चर्चेद्वारे ते तुमच्यासाठी कसे फायदेशीर आहे ते जाणून घ्या",
 
       // loan products
-      "homeLoan": "गृहकर्ज",
-      "homeLoanDesc": "तुमच्या गरजेनुसार विविध गृहकर्ज पर्याय पाहा",
-      "personalLoan": "वैयक्तिक कर्ज",
-      "personalLoanDesc": "सुट्टी, घराचे नूतनीकरण इत्यादीसाठी आकर्षक दरात वैयक्तिक कर्ज मिळवा",
-      "businessLoan": "व्यवसाय कर्ज",
-      "businessLoanDesc": "किमान कागदपत्रे आणि जलद मंजुरीसह तुमचा व्यवसाय वाढवा",
-      "educationLoan": "शिक्षण कर्ज",
-      "educationLoanDesc": "सोप्या अटींसह विविध अभ्यासक्रमांसाठी कर्ज मिळवा",
-      "goldLoan": "सोनेतून कर्ज",
-      "goldLoanDesc": "आकर्षक व्याजदरावर तुमचे सोने गहाण ठेवून त्वरित निधी मिळवा",
-      "fdLoan": "ठेव विरुद्ध कर्ज",
-      "fdLoanDesc": "तुमच्या निश्चित ठेवीवर कर्ज मिळवा आकर्षक व्याजदरासह",
+      "kisanCreditCardLoan": "शेतकरी क्रेडिट कार्ड (KCC)",
+      "kisanCreditCardLoanDesc": "पिक उत्पादन, बियाणे, खते आणि इतर शेतीसाठी लागणारे साहित्य खरेदी करण्यासाठी अल्पकालीन कर्ज पुरवते, ज्याची परतफेड कापणीशी जोडलेली असते.",
+      "tractorMachineryLoan": "ट्रॅक्टर व शेती यंत्रसामग्री कर्ज",
+      "tractorMachineryLoanDesc": "शेतकऱ्यांना ट्रॅक्टर, हार्वेस्टर, सिंचन पंप व आधुनिक साधने खरेदी करण्यास मदत करते, ज्यामुळे उत्पादनक्षमता वाढते व श्रम कमी होतो.",
+      "cropLoan": "पिक कर्ज",
+      "cropLoanDesc": "हंगामी पिकांसाठी बी-बियाणे, खते, कीटकनाशके व मजुरी खर्च भागवण्यासाठी जलद वित्तपुरवठा करते, ज्याची परतफेड कापणीनंतर करावी लागते.",
+      "dairyLivestockLoan": "दुग्ध व पशुधन कर्ज",
+      "dairyLivestockLoanDesc": "दुग्ध व्यवसाय, पोल्ट्री, शेळीपालन किंवा मत्स्यपालन सुरू करण्यासाठी किंवा वाढवण्यासाठी शेतकऱ्यांना मदत करते, पशू खरेदी व देखभालीसाठी निधी पुरवते.",
+      "farmDevelopmentLoan": "शेती विकास कर्ज",
+      "farmDevelopmentLoanDesc": "जमीन समतल करणे, कुंपण घालणे, सिंचन व्यवस्था, ग्रीनहाऊस बांधकाम आणि फळबाग लागवड यांसारख्या दीर्घकालीन गुंतवणुकीसाठी निधी पुरवते.",
+      "agriGoldLoan": "कृषी सोनं कर्ज",
+      "agriGoldLoanDesc": "शेतकरी सोन्याचे दागिने गहाण ठेवून तत्काळ कर्ज मिळवू शकतात, ज्यामुळे शेतीसाठी तात्काळ निधी मिळतो आणि कमी कागदपत्रांची गरज भासते.",
 
       // account products
       "savingsAccount": "बचत खाते",
@@ -491,8 +491,8 @@ const resources = {
       "aiSupport": "ಎಐ ಬೆಂಬಲ",
 
       "insurance": "ವಿಮೆ",
-    "activityPlanner": "ಎಂಎಸ್‌ಎಂಇ ಯೋಜನಾ ಯೋಜಕ",
-    "recommendBankExperts": "ಬ್ಯಾಂಕ್ ತಜ್ಞರನ್ನು ಶಿಫಾರಸು ಮಾಡಿ",
+      "activityPlanner": "ಎಂಎಸ್‌ಎಂಇ ಯೋಜನಾ ಯೋಜಕ",
+      "recommendBankExperts": "ಬ್ಯಾಂಕ್ ತಜ್ಞರನ್ನು ಶಿಫಾರಸು ಮಾಡಿ",
 
       // Bank Contact
       "bankContactTitle": "ಬ್ಯಾಂಕ್ ಪರಿಣಿತರೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ",
@@ -507,18 +507,18 @@ const resources = {
       "productsDescription": "ಯಾವುದೇ ಉತ್ಪನ್ನವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಸಂವಾದಾತ್ಮಕ ಸಂಭಾಷಣೆಯ ಮೂಲಕ ಅದು ನಿಮ್ಮ ಪರಿಸ್ಥಿತಿಗೆ ಹೇಗೆ ಸಹಾಯಕವಾಗಿದೆ ಎಂಬುದನ್ನು ತಿಳಿಯಿರಿ",
 
       // loan products
-      "homeLoan": "ಮನೆ ಸಾಲ",
-      "homeLoanDesc": "ನಿಮ್ಮ ಅಗತ್ಯಗಳಿಗೆ ತಕ್ಕಂತೆ ವಿವಿಧ ಗೃಹ ಸಾಲ ಆಯ್ಕೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
-      "personalLoan": "ವೈಯಕ್ತಿಕ ণ",
-      "personalLoanDesc": "ಅವನತಿ, ರಜಾ, ಅಥವಾ ಇತರ ವೆಚ್ಚಗಳಿಗಾಗಿ ಆಕರ್ಷಕ ಬಡ್ಡಿದರದಲ್ಲಿ ವೈಯಕ್ತಿಕ ಣ ಪಡೆಯಿರಿ",
-      "businessLoan": "ವ್ಯಾಪಾರ ণ",
-      "businessLoanDesc": "ಕಡಿಮೆ ಕಾಗದ ಪತ್ರಗಳೊಂದಿಗೆ ಮತ್ತು ವೇಗದ ಅನುಮೋದನೆಯೊಂದಿಗೆ ನಿಮ್ಮ ವ್ಯವಹಾರವನ್ನು ವಿಸ್ತರಿಸಿ",
-      "educationLoan": "ಶಿಕ್ಷಣ ণ",
-      "educationLoanDesc": "ವಿಭಿನ್ನ ಕೋರ್ಸ್‌ಗಳಿಗಾಗಿ ಸರಳ ಶರತ್ತುಗಳೊಂದಿಗೆ ಣವನ್ನು ಪಡೆಯಿರಿ",
-      "goldLoan": "ಚಿನ್ನದ ಣ",
-      "goldLoanDesc": "ಆಕರ್ಷಕ ಬಡ್ಡಿದರದಲ್ಲಿ ನಿಮ್ಮ ಚಿನ್ನವನ್ನು ತಪಾಸಣೆಗೆ ಇಟ್ಟು ತ್ವರಿತ ಹಣವನ್ನು ಪಡೆಯಿರಿ",
-      "fdLoan": "ಸ್ಥಿರ ಠೇವಣಿಯ ವಿರುದ್ಧ ಣ",
-      "fdLoanDesc": "ನಿಮ್ಮ ಎಫ್‌ಡಿಗೆ ವಿರುದ್ಧವಾಗಿ ಆಕರ್ಷಕ ಬಡ್ಡಿದರದಲ್ಲಿ ಣ ಪಡೆಯಿರಿ",
+      "kisanCreditCardLoan": "ಕಿಸಾನ್ ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್ (KCC)",
+      "kisanCreditCardLoanDesc": "ಬೆಳೆ ಉತ್ಪಾದನೆ, ಬೀಜ, ರಸಗೊಬ್ಬರ ಮತ್ತು ಇತರೆ ಕೃಷಿ ಒಳಿತಾಗಳ ಖರೀದಿಗಾಗಿ ಅಲ್ಪಾವಧಿ ಸಾಲವನ್ನು ಒದಗಿಸುತ್ತದೆ, ಇದನ್ನು ಬೆಳೆ ಕಟಾವಿನ ನಂತರ ಹಿಂತಿರುಗಿಸಬೇಕು.",
+      "tractorMachineryLoan": "ಟ್ರಾಕ್ಟರ್ ಮತ್ತು ಕೃಷಿ ಯಂತ್ರೋಪಕರಣ ಸಾಲ",
+      "tractorMachineryLoanDesc": "ಕೃಷಿಕರಿಗೆ ಟ್ರಾಕ್ಟರ್, ಹಾರ್ವೆಸ್ಟರ್, ನೀರಾವರಿ ಪಂಪುಗಳು ಮತ್ತು ಆಧುನಿಕ ಸಾಧನಗಳನ್ನು ಖರೀದಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ, ಇದರಿಂದ ಉತ್ಪಾದಕತೆ ಹೆಚ್ಚುತ್ತದೆ ಮತ್ತು ಕಾರ್ಮಿಕ ಶ್ರಮ ಕಡಿಮೆಯಾಗುತ್ತದೆ.",
+      "cropLoan": "ಬೆಳೆ ಸಾಲ",
+      "cropLoanDesc": "ಋತುಚಲಿತ ಬೆಳೆಗಳ ಬೀಜ, ರಸಗೊಬ್ಬರ, ಕೀಟನಾಶಕ ಮತ್ತು ಕೂಲಿ ವೆಚ್ಚಗಳಿಗಾಗಿ ತ್ವರಿತ ಹಣಕಾಸು ಒದಗಿಸುತ್ತದೆ, ಹಿಂತಿರುಗುವಿಕೆ ಕಟಾವಿನ ನಂತರ ಮಾಡಬೇಕು.",
+      "dairyLivestockLoan": "ಹಾಲು ಮತ್ತು ಪಶುಸಂಗೋಪನೆ ಸಾಲ",
+      "dairyLivestockLoanDesc": "ಹಾಲು ಉತ್ಪಾದನೆ, ಕೋಳಿ ಸಾಕಣೆ, ಆಡು ಸಾಕಣೆ ಅಥವಾ ಮೀನುಗಾರಿಕೆ ಪ್ರಾರಂಭಿಸಲು ಅಥವಾ ವಿಸ್ತರಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ, ಪಶು ಖರೀದಿ ಮತ್ತು ನಿರ್ವಹಣೆಗೆ ನಿಧಿ ಒದಗಿಸುತ್ತದೆ.",
+      "farmDevelopmentLoan": "ಕೃಷಿ ಅಭಿವೃದ್ಧಿ ಸಾಲ",
+      "farmDevelopmentLoanDesc": "ಜಮೀನು ಸಮತಟ್ಟಾಗಿಸುವುದು, ಬೇಲಿ ಹಾಕುವುದು, ನೀರಾವರಿ ವ್ಯವಸ್ಥೆ, ಗ್ರೀನ್ಹೌಸ್ ನಿರ್ಮಾಣ ಮತ್ತು ತೋಟಗಾರಿಕೆ ಹೂಡಿಕೆಗಳಿಗೆ ದೀರ್ಘಾವಧಿ ನಿಧಿ ಒದಗಿಸುತ್ತದೆ.",
+      "agriGoldLoan": "ಕೃಷಿ ಚಿನ್ನದ ಸಾಲ",
+      "agriGoldLoanDesc": "ಕೃಷಿಕರು ತಮ್ಮ ಚಿನ್ನಾಭರಣವನ್ನು ತಾಂಬಾಳೆ ಇಟ್ಟು ಶೀಘ್ರ ಸಾಲ ಪಡೆಯಬಹುದು, ಇದರಿಂದ ಕೃಷಿ ಕೆಲಸಗಳಿಗೆ ತಕ್ಷಣದ ಹಣಕಾಸು ಲಭ್ಯವಾಗುತ್ತದೆ ಮತ್ತು ಕಡಿಮೆ ದಾಖಲೆಗಳನ್ನು ಬೇಕಾಗುತ್ತದೆ.",
 
       // account products
       "savingsAccount": "ಉಳಿತಾಯ ಖಾತೆ",

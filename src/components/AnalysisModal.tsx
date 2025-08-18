@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, TrendingUp, Users, DollarSign, Calendar, Shield, Heart, Activity, Home, Briefcase } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, Users, DollarSign, Calendar, Shield, Heart, Activity, Home, Briefcase, Coins, Trees, Milk, Sprout, Tractor } from 'lucide-react';
 
 interface AnalysisModalProps {
   product: {
@@ -174,155 +174,157 @@ const AnalysisModal: React.FC<AnalysisModalProps> = ({ product, isOpen, onClose 
           }
         ];
 
-      case 'home-loan':
+      // For 'loans'
+      case 'kisan-credit-card':
         return [
           {
-            title: "Loan Overview",
+            title: "Credit Facility",
             content: [
-              "• Interest rates: 8–10.5% p.a.",
-              "• Tenure: up to 30 years",
-              "• LTV ratio: up to 90%",
-              "• EMI options with tax benefits",
-              "• Pre-approval in 3–5 days"
+              "• Revolving credit up to ₹3 lakhs",
+              "• Interest: 4–7% p.a. (with subsidy)",
+              "• Flexible repayment linked to harvest",
+              "• ATM-cum-debit card facility",
+              "• Crop insurance cover included"
             ],
             icon: DollarSign
           },
           {
             title: "Eligibility",
             content: [
-              "• Salaried or self-employed individuals",
-              "• Age: 21 to 65 years",
-              "• Credit score: 750+ preferred",
-              "• Income proof & property documents"
+              "• Farmers owning/renting cultivable land",
+              "• Tenant farmers, sharecroppers eligible",
+              "• Age: 18–75 years",
+              "• KYC & land ownership proof required"
             ],
             icon: Users
           }
         ];
 
-      case 'personal-loan':
+      case 'tractor-machinery-loan':
         return [
           {
-            title: "Quick Features",
+            title: "Loan Features",
             content: [
-              "• Unsecured loan, no collateral",
-              "• Tenure: 1–5 years",
-              "• Interest: 10–18% p.a.",
-              "• Loan amount: ₹25,000 to ₹25 lakhs",
-              "• Disbursal in 1–3 days"
+              "• Loan up to ₹25 lakhs (depends on machine cost)",
+              "• Repayment tenure: 3–7 years",
+              "• Margin money: 10–25%",
+              "• Interest rate: 8–12% p.a.",
+              "• Covers tractors, harvesters, irrigation pumps, etc."
             ],
-            icon: DollarSign
-          },
-          {
-            title: "Best For",
-            content: [
-              "• Medical emergencies",
-              "• Travel, wedding expenses",
-              "• Debt consolidation",
-              "• Home improvement"
-            ],
-            icon: Users
-          }
-        ];
-
-      case 'business-loan':
-        return [
-          {
-            title: "Loan Overview",
-            content: [
-              "• ₹50,000 to ₹50 lakhs",
-              "• 8.5–15% interest p.a.",
-              "• Tenure: 1–7 years",
-              "• Collateral may be required",
-              "• Processing time: 7–15 days"
-            ],
-            icon: DollarSign
+            icon: Tractor
           },
           {
             title: "Eligibility",
             content: [
-              "• 2+ years of business vintage",
-              "• Turnover above ₹1.5 lakhs",
-              "• Credit score > 750",
-              "• Business registration proof"
+              "• Individual farmers, groups, or cooperatives",
+              "• Should own/rent agricultural land",
+              "• Minimum 2 acres of cultivable land preferred",
+              "• KYC documents & land proof required"
             ],
             icon: Users
           }
         ];
 
-      case 'education-loan':
+      case 'crop-loan':
         return [
           {
-            title: "Loan Coverage",
+            title: "Loan Features",
             content: [
-              "• Tuition + hostel + travel + books",
-              "• Up to ₹20 lakhs (India) / ₹50 lakhs (Abroad)",
-              "• Interest: 9–13% p.a.",
-              "• Moratorium: Course duration + 6 months",
-              "• Repayment: up to 15 years"
+              "• Short-term loan up to ₹3 lakhs",
+              "• Repayment after harvest (6–18 months)",
+              "• Interest: 7% p.a. (subsidy up to 3% for timely repayment)",
+              "• Covers seeds, fertilizers, pesticides, labor",
+              "• Simple processing and quick disbursal"
             ],
-            icon: DollarSign
+            icon: Sprout
           },
           {
             title: "Eligibility",
             content: [
-              "• Admission in recognized institution",
-              "• Co-borrower (parent/guardian) required",
-              "• Proof of income & collateral (if > ₹7.5L)",
-              "• Good academic record"
+              "• Farmers engaged in seasonal crop cultivation",
+              "• Tenant farmers and sharecroppers eligible",
+              "• Age: 18–70 years",
+              "• Land records or lease agreement required"
             ],
             icon: Users
           }
         ];
 
-      case 'gold-loan':
+      case 'dairy-livestock-loan':
         return [
           {
-            title: "Loan Highlights",
+            title: "Loan Features",
             content: [
-              "• Secured against gold ornaments",
-              "• Loan-to-value ratio up to 75%",
-              "• Amount: ₹10,000 to ₹1 crore",
-              "• Tenure: 3–36 months",
-              "• Interest: 7–14% p.a."
+              "• Loan up to ₹10 lakhs (depending on activity)",
+              "• Repayment period: 3–5 years",
+              "• Covers purchase of cows, buffaloes, goats, poultry, fisheries",
+              "• Includes shed construction, feed, and maintenance",
+              "• Interest subsidy available under govt. schemes"
             ],
-            icon: DollarSign
+            icon: Milk
           },
           {
-            title: "Why Choose",
+            title: "Eligibility",
             content: [
-              "• Minimal paperwork",
-              "• Instant disbursal within 30 mins",
+              "• Farmers, women entrepreneurs, SHGs, cooperatives",
+              "• Age: 18–70 years",
+              "• Basic training/experience in dairy/livestock preferred",
+              "• KYC & income proof required"
+            ],
+            icon: Users
+          }
+        ];
+
+      case 'farm-development-loan':
+        return [
+          {
+            title: "Loan Features",
+            content: [
+              "• Loan amount: ₹50,000 to ₹20 lakhs",
+              "• Repayment period: 5–15 years",
+              "• Interest: 8–11% p.a.",
+              "• Funds for irrigation, fencing, land leveling, greenhouses, orchards",
+              "• Long-term development support for sustainable farming"
+            ],
+            icon: Trees
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Farmers with cultivable land ownership",
+              "• Age: 18–70 years",
+              "• Detailed project plan may be required",
+              "• KYC, land documents mandatory"
+            ],
+            icon: Users
+          }
+        ];
+
+      case 'agri-gold-loan':
+        return [
+          {
+            title: "Loan Features",
+            content: [
+              "• Loan amount: ₹10,000 to ₹25 lakhs (based on gold value)",
+              "• Tenure: 6 months to 3 years",
+              "• Interest rate: 7–12% p.a.",
+              "• Quick disbursal with minimal paperwork",
+              "• Secure storage of pledged gold"
+            ],
+            icon: Coins
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Farmers owning gold ornaments",
+              "• Age: 18–70 years",
               "• No income proof required",
-              "• Safe locker storage of pledged gold"
+              "• KYC & gold purity verification mandatory"
             ],
             icon: Users
           }
         ];
 
-      case 'fd-loan':
-        return [
-          {
-            title: "Loan Against FD",
-            content: [
-              "• Up to 90% of FD value as loan",
-              "• Interest = FD rate + 1–2%",
-              "• No need to break FD",
-              "• Tenure same as FD or lower",
-              "• Instant processing"
-            ],
-            icon: DollarSign
-          },
-          {
-            title: "Advantages",
-            content: [
-              "• Low interest compared to personal loan",
-              "• No credit score check",
-              "• Retain interest on FD",
-              "• Ideal for urgent cash needs"
-            ],
-            icon: Users
-          }
-        ];
 
       // For 'life-insurance'
       case 'life-insurance':

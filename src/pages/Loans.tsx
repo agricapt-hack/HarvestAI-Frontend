@@ -40,7 +40,7 @@ const Loans = () => {
     const fetchConversationData = async () => {
       if (currentProduct) {
         const response = await axios.post(`${BASE_URL}/gamify`, {
-          customer_id: user?.username,
+          customer_id: user?.unsafeMetadata?.firstName,
           product_id: currentProduct.id,
         });
 
@@ -55,7 +55,7 @@ const Loans = () => {
       if (currentProduct) {
         console.log(currentProduct);
         axios.post(`${BASE_URL_AGRI}/fin/yt-search`, {
-          query: `Search top videos in ${langMap[appContext.language]} language on "${currentProduct.title}" for financial awareness and learning.`
+          query: `${currentProduct.title} for farmers in ${langMap[appContext.language]} language`
         }).then((res) => {
           console.log(res.data);
           const videos = res.data.videos;

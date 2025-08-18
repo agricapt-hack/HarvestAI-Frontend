@@ -1,4 +1,4 @@
-import { Box, CircleDollarSign, Coins, HandCoins, HandHeart, Handshake, House, IndianRupee, School, Shield, User } from "lucide-react";
+import { Box, CircleDollarSign, Coins, CreditCard, HandCoins, HandHeart, Handshake, House, IndianRupee, LucideSwatchBook, School, Shield, Sprout, Tractor, Trees, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const useFinancialProducts = (type = "all") => {
@@ -6,53 +6,54 @@ export const useFinancialProducts = (type = "all") => {
 
   const allProducts = [
     {
-      id: "home-loan",
+      id: "kisan-credit-card",
       type: "loan",
-      title: t('homeLoan'),
-      description: t('homeLoanDesc'),
-      icon: House,
+      title: t('kisanCreditCardLoan'),
+      description: t('kisanCreditCardLoanDesc'),
+      icon: CreditCard,
       color: "bg-green-100 text-green-700",
     },
     {
-      id: "personal-loan",
+      id: "tractor-machinery-loan",
       type: "loan",
-      title: t('personalLoan'),
-      description: t('personalLoanDesc'),
-      icon: User,
+      title: t('tractorMachineryLoan'),
+      description: t('tractorMachineryLoanDesc'),
+      icon: Tractor,
+      color: "bg-blue-100 text-blue-700",
+    },
+    {
+      id: "crop-loan",
+      type: "loan",
+      title: t('cropLoan'),
+      description: t('cropLoanDesc'),
+      icon: Sprout,
       color: "bg-green-100 text-green-700",
     },
     {
-      id: "business-loan",
+      id: "dairy-livestock-loan",
       type: "loan",
-      title: t('businessLoan'),
-      description: t('businessLoanDesc'),
-      icon: Handshake,
+      title: t('dairyLivestockLoan'),
+      description: t('dairyLivestockLoanDesc'),
+      icon: LucideSwatchBook,
+      color: "bg-yellow-100 text-yellow-700",
+    },
+    {
+      id: "farm-development-loan",
+      type: "loan",
+      title: t('farmDevelopmentLoan'),
+      description: t('farmDevelopmentLoanDesc'),
+      icon: Trees,
       color: "bg-blue-100 text-blue-700",
     },
     {
-      id: "education-loan",
+      id: "agri-gold-loan",
       type: "loan",
-      title: t('educationLoan'),
-      description: t('educationLoanDesc'),
-      icon: School,
-      color: "bg-blue-100 text-blue-700",
-    },
-    {
-      id: "gold-loan",
-      type: "loan",
-      title: t('goldLoan'),
-      description: t('goldLoanDesc'),
+      title: t('agriGoldLoan'),
+      description: t('agriGoldLoanDesc'),
       icon: Coins,
       color: "bg-yellow-100 text-yellow-700",
     },
-    {
-      id: "fd-loan",
-      type: "loan",
-      title: t('fdLoan'),
-      description: t('fdLoanDesc'),
-      icon: CircleDollarSign,
-      color: "bg-yellow-100 text-yellow-700",
-    },
+
     {
       id: "savings-account",
       type: "account",
@@ -151,6 +152,6 @@ export const useFinancialProducts = (type = "all") => {
     },
   ];
 
-  if(type === "all") return allProducts;
+  if (type === "all") return allProducts;
   else return allProducts.filter((product) => product.type === type);
 };

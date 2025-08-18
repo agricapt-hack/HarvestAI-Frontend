@@ -40,7 +40,7 @@ const Insurance = () => {
     const fetchConversationData = async () => {
       if (currentProduct) {
         const response = await axios.post(`${BASE_URL}/gamify`, {
-          customer_id: user?.username,
+          customer_id: user?.unsafeMetadata?.firstName,
           product_id: currentProduct.id,
         });
 

@@ -22,7 +22,7 @@ export const Chatbot: React.FC = () => {
         {
             id: '1',
             type: 'bot',
-            content: "Hello, I am Harvest.AI Assistant. Your personal AI financial advisor — here to answer your queries.",
+            content: "Hello, I am Harvest.AI Assistant. From field care to financial support, Harvest.AI is your all-in-one assistant.",
             timestamp: new Date()
         },
         {
