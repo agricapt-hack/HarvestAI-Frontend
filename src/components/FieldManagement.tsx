@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Phone, Users, TrendingUp, Sprout, Star, Shield, Zap, Plus, Trash2, Bell } from "lucide-react";
-import FieldDetailsModal from "@/components/FieldDetailsModal";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -38,6 +37,7 @@ export default function FieldManagement() {
     const [currentStatus, setCurrentStatus] = useState("");
     const [hubCode, setHubCode] = useState("");
     const [location, setLocation] = useState({ lat: null, lng: null });
+    const [changeRequired, setChangeRequired] = useState(false);
     const [fields, setFields] = useState([
         // {
         //     fieldId: "F001",
@@ -113,7 +113,7 @@ export default function FieldManagement() {
         }
         fetchFieldsByUserEmail();
 
-    }, [user])
+    }, [user, changeRequired])
 
     const appContext = useApp();
 
@@ -146,18 +146,6 @@ export default function FieldManagement() {
             });
             return;
         }
-        // const newField = {
-        //     fieldId: `F${String(fields.length + 1).padStart(3, '0')}`,
-        //     fieldName: fieldName.trim(),
-        //     cropName: cropName.trim(),
-        //     timestamp: new Date(),
-        //     notifications: 0,
-        //     comments: [],
-        //     // startedInfo: startedInfo.trim(),
-        //     // currentStatus: currentStatus.trim(),
-        //     hubCode: hubCode.trim(),
-        //     location: location,
-        // };
         const payload = {
             // field_id: `F${String(fields.length + 1).padStart(3, '0')}`,
             field_id: `F${Math.random().toString(36).substring(2, 10)}`,
@@ -174,6 +162,7 @@ export default function FieldManagement() {
         }
         await axios.post(`${BASE_URL_AGRI}/field/add-field`, payload);
         // setFields([...fields, newField]);
+        setChangeRequired(!changeRequired);
         setFieldName("");
         setCropName("");
         // setComments("");

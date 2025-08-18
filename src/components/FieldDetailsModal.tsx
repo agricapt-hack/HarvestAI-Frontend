@@ -21,6 +21,7 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { toast } from '@/hooks/use-toast';
 import { Textarea } from './ui/textarea';
+import { useApp } from '@/store/AppContext';
 
 ChartJS.register(
   CategoryScale,
@@ -59,6 +60,8 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
   const [resolveComment, setResolveComment] = useState("");
 
   const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
+
+  const appContext = useApp();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -129,10 +132,36 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
         toast({
           title: "Alert resolved successfully",
         });
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        setResolveComment("");
+        setShowResolveModal(false);
+        setSelectedNotification(null);
+        appContext.updateFieldData(null);
       })
-      setResolveComment("");
-      setShowResolveModal(false);
-      setSelectedNotification(null);
+    }
+  };
+
+  const handleCommentSubmit = () => {
+    if (selectedNotification && resolveComment.trim()) {
+      axios.post(`${BASE_URL_AGRI}/alert/change-alert-status`, {
+        alert_id: selectedNotification.alert_id,
+        resolved: selectedNotification.resolved,
+        new_comment: resolveComment,
+      }).then((res) => {
+        console.log(res.data);
+        toast({
+          title: "Comment has been added successfully",
+        });
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        setResolveComment("");
+        setShowResolveModal(false);
+        setSelectedNotification(null);
+        appContext.updateFieldData(null);
+      })
     }
   };
 
@@ -500,16 +529,16 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
                         {notification.comments.length > 0 && <MessageCircle className="h-4 w-4" />}
                         {/* {notification.comments.length > 0 && `(${notification.comments.length})`} */}
                       </div>
-                      {!notification.resolved && (
-                        <div
-                          // size="sm"
-                          // variant="outline"
-                          onClick={() => handleResolveClick(notification)}
-                          className="flex items-center gap-1 cursor-pointer"
-                        >
-                          <CheckCircle className="h-4 w-4" />
-                        </div>
-                      )}
+                      {/* {!notification.resolved && ( */}
+                      <div
+                        // size="sm"
+                        // variant="outline"
+                        onClick={() => handleResolveClick(notification)}
+                        className="flex items-center gap-1 cursor-pointer"
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                      </div>
+                      {/* )} */}
                     </div>
                   </div>
 
@@ -667,14 +696,14 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
       <Dialog open={showResolveModal} onOpenChange={() => setShowResolveModal(false)}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Resolve Notification</DialogTitle>
+            <DialogTitle>Add Comments</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <p className="text-sm text-gray-600">
-              Add a comment about how this alert was resolved:
+              Add notes on resolving alert
             </p>
             <Textarea
-              placeholder="Enter resolution comment..."
+              placeholder="Write your comment..."
               value={resolveComment}
               onChange={(e) => setResolveComment(e.target.value)}
               rows={3}
@@ -686,11 +715,17 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
               >
                 Cancel
               </Button>
-              <Button
+              {selectedNotification && !selectedNotification.resolved && <Button
                 onClick={handleResolveSubmit}
                 disabled={!resolveComment.trim()}
               >
                 Resolve
+              </Button>}
+              <Button
+                onClick={handleCommentSubmit}
+                disabled={!resolveComment.trim()}
+              >
+                Add Comment
               </Button>
             </div>
           </div>
