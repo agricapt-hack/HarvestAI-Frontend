@@ -16,30 +16,39 @@ const QRScanner = ({ isOpen, onClose, onScan }: QRScannerProps) => {
   const [qrScanner, setQrScanner] = useState<QrScanner | null>(null);
 
   useEffect(() => {
-    if (isOpen && videoRef.current) {
-      startScanning();
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        startScanning();
+      }, 300); // wait for Dialog to mount
+      return () => clearTimeout(timer);
     } else {
       stopScanning();
     }
-
-    return () => {
-      stopScanning();
-    };
   }, [isOpen]);
 
   const startScanning = async () => {
-    if (!videoRef.current) return;
+    console.log(videoRef);
+    // if (!videoRef.current) return;
 
     try {
+      // Wait a tick to ensure <video> is mounted in the DOM
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      const hasCamera = await QrScanner.hasCamera();
+      if (!hasCamera) {
+        console.error("No camera found on this device");
+        return;
+      }
+
       const scanner = new QrScanner(
         videoRef.current,
         (result) => {
-          // Automatically close and set the scanned value
           onScan(result.data);
           handleClose();
         },
         {
-          preferredCamera: 'environment', // Use back camera
+          // don't rely solely on preferredCamera
+          preferredCamera: "environment",
           highlightScanRegion: true,
           highlightCodeOutline: true,
         }
@@ -50,7 +59,7 @@ const QRScanner = ({ isOpen, onClose, onScan }: QRScannerProps) => {
       setIsScanning(true);
     } catch (error) {
       console.error("Error starting QR scanner:", error);
-      // Fallback to front camera
+      // fallback attempt
       try {
         const scanner = new QrScanner(
           videoRef.current!,
@@ -59,12 +68,11 @@ const QRScanner = ({ isOpen, onClose, onScan }: QRScannerProps) => {
             handleClose();
           },
           {
-            preferredCamera: 'user',
+            preferredCamera: "user",
             highlightScanRegion: true,
             highlightCodeOutline: true,
           }
         );
-
         await scanner.start();
         setQrScanner(scanner);
         setIsScanning(true);
@@ -97,23 +105,23 @@ const QRScanner = ({ isOpen, onClose, onScan }: QRScannerProps) => {
             Scan QR Code
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-4">
           <div className="relative bg-black rounded-lg overflow-hidden">
-            <video 
+            <video
               ref={videoRef}
               className="w-full h-64 object-cover"
               playsInline
               muted
             />
           </div>
-          
+
           <div className="text-center text-sm text-muted-foreground">
             {isScanning ? "Position the QR code in front of the camera" : "Starting camera..."}
           </div>
-          
+
           <div className="flex justify-center">
-            <Button 
+            <Button
               onClick={handleClose}
               variant="outline"
               className="w-full"
