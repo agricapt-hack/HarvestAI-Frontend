@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Phone, Users, TrendingUp, Sprout, Star, Shield, Zap, Plus, Trash2, Bell } from "lucide-react";
+import { Phone, Users, TrendingUp, Sprout, Star, Shield, Zap, Plus, Trash2, Bell, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -22,6 +22,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useApp } from "@/store/AppContext";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
+import QRScanner from "./QRScanner";
 
 export default function FieldManagement() {
     const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
@@ -38,6 +39,7 @@ export default function FieldManagement() {
     const [hubCode, setHubCode] = useState("");
     const [location, setLocation] = useState({ lat: null, lng: null });
     const [changeRequired, setChangeRequired] = useState(false);
+    const [showQRScanner, setShowQRScanner] = useState(false);
     const [fields, setFields] = useState([
         // {
         //     fieldId: "F001",
@@ -75,17 +77,17 @@ export default function FieldManagement() {
     ]);
 
     function formatDateTime(timestamp: string) {
-    const d = new Date(timestamp);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0"); // month is 0-indexed
-    const year = d.getFullYear();
+        const d = new Date(timestamp);
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0"); // month is 0-indexed
+        const year = d.getFullYear();
 
-    const hours = String(d.getHours()).padStart(2, "0");
-    const minutes = String(d.getMinutes()).padStart(2, "0");
-    const seconds = String(d.getSeconds()).padStart(2, "0");
+        const hours = String(d.getHours()).padStart(2, "0");
+        const minutes = String(d.getMinutes()).padStart(2, "0");
+        const seconds = String(d.getSeconds()).padStart(2, "0");
 
-    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-  }
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    }
 
     useEffect(() => {
         const fetchFieldsByUserEmail = async () => {
@@ -184,6 +186,10 @@ export default function FieldManagement() {
         setFields(fields.filter(field => field.fieldId !== fieldId));
     };
 
+    const handleQRScan = (scannedValue: string) => {
+        setHubCode(scannedValue);
+        setShowQRScanner(false);
+    };
 
     return (<>
         <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-16 border border-white/20">
@@ -194,6 +200,13 @@ export default function FieldManagement() {
                     </h3>
                     <p className="text-gray-600 mt-2">Manage your agricultural fields and crops</p>
                 </div>
+
+                <QRScanner
+                    isOpen={showQRScanner}
+                    onClose={() => setShowQRScanner(false)}
+                    onScan={handleQRScan}
+                />
+                
                 <Dialog open={showAddField} onOpenChange={setShowAddField}>
                     <DialogTrigger asChild>
                         <Button className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
@@ -297,13 +310,25 @@ export default function FieldManagement() {
                                 <Label htmlFor="hubCode" className="text-right">
                                     Hub Code
                                 </Label>
-                                <Input
-                                    id="hubCode"
-                                    value={hubCode}
-                                    onChange={(e) => setHubCode(e.target.value)}
-                                    className="col-span-3"
-                                    placeholder="Enter hub code"
-                                />
+                                <div className="col-span-3 flex gap-2">
+                                    <Input
+                                        id="hubCode"
+                                        value={hubCode}
+                                        onChange={(e) => setHubCode(e.target.value)}
+                                        className="col-span-3"
+                                        placeholder="Enter hub code or scan QR"
+                                    />
+                                    <Button
+                                        type="button"
+                                        onClick={() => setShowQRScanner(true)}
+                                        variant="outline"
+                                        size="sm"
+                                        className="flex items-center gap-1"
+                                    >
+                                        <Camera className="h-4 w-4" />
+                                        Scan QR
+                                    </Button>
+                                </div>
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label className="text-right">
