@@ -504,12 +504,16 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
                   <div key={id} className="flex items-center justify-between p-5 bg-gray-50 rounded-lg relative">
                     <div className="flex items-center gap-3">
                       <div className='flex-1 items-center'>
-                        <Badge
+                        {notification.resolved ? <Badge
+                          variant={'green'}
+                        >
+                          Resolved
+                        </Badge> : <Badge
                           variant={notification.action_severity === 'high' ? 'destructive' :
                             notification.action_severity === 'medium' ? 'yellow' : 'default'}
                         >
                           {notification.action_severity}
-                        </Badge>
+                        </Badge>}
                         <br />
                         <Badge
                           variant={'default'}
@@ -566,7 +570,7 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
                   Choose Images
                 </label>
               </Button>
-              <Button asChild variant="green" size="sm" className='ml-4' onClick={handleProcessImage}>
+              <Button asChild variant="green" size="sm" className='ml-4 bg-green-700 hover:bg-green-800' onClick={handleProcessImage}>
                 <label className="cursor-pointer flex items-center gap-2">
                   Process
                 </label>
@@ -720,18 +724,19 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
               >
                 Cancel
               </Button>
-              {selectedNotification && !selectedNotification.resolved && <Button
-                onClick={handleResolveSubmit}
-                disabled={!resolveComment.trim()}
-              >
-                Resolve
-              </Button>}
               <Button
                 onClick={handleCommentSubmit}
                 disabled={!resolveComment.trim()}
               >
                 Add Comment
               </Button>
+              {selectedNotification && !selectedNotification.resolved && <Button
+                onClick={handleResolveSubmit}
+                disabled={!resolveComment.trim()}
+                className='bg-green-700 hover:bg-green-800'
+              >
+                Resolve
+              </Button>}
             </div>
           </div>
         </DialogContent>
