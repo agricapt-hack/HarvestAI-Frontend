@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, TrendingUp, Users, DollarSign, Calendar, Shield, Heart, Activity, Home, Briefcase, Coins, Trees, Milk, Sprout, Tractor } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, Users, DollarSign, Calendar, Shield, Heart, Activity, Home, Briefcase, Coins, Trees, Milk, Sprout, Tractor, Leaf, CloudRain } from 'lucide-react';
 
 interface AnalysisModalProps {
   product: {
@@ -326,17 +326,121 @@ const AnalysisModal: React.FC<AnalysisModalProps> = ({ product, isOpen, onClose 
         ];
 
 
-      // For 'life-insurance'
-      case 'life-insurance':
+      // For 'pmfby' (Pradhan Mantri Fasal Bima Yojana)
+      case 'pmfby':
+        return [
+          {
+            title: "Scheme Details",
+            content: [
+              "• Covers crop loss due to natural calamities, pests, and diseases",
+              "• Premium: 1.5%–2% of sum insured (varies by crop/type)",
+              "• Claim settlement within 30–45 days after harvest",
+              "• Available for all major Kharif and Rabi crops",
+              "• Government subsidy for premium payment"
+            ],
+            icon: Heart
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Registered farmer with cultivable land",
+              "• Applies for specific insured crop",
+              "• Indian resident",
+              "• Aadhaar & land ownership proof required"
+            ],
+            icon: Users
+          }
+        ];
+
+      // For 'wbcis' (Weather-Based Crop Insurance Scheme)
+      case 'wbcis':
+        return [
+          {
+            title: "Scheme Details",
+            content: [
+              "• Covers losses due to weather deviations (rainfall, drought, frost, heat)",
+              "• Payout based on weather index measurements",
+              "• Quick claim processing after adverse weather events",
+              "• Helps stabilize farmer income against climate risks",
+              "• Premium varies by crop and region"
+            ],
+            icon: CloudRain
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Farmer growing insured crops in participating districts",
+              "• Indian resident",
+              "• Aadhaar and bank account required",
+              "• Enrollment before sowing/season start"
+            ],
+            icon: Users
+          }
+        ];
+
+      // For 'livestock-insurance' (Livestock Insurance Scheme)
+      case 'livestock-insurance':
         return [
           {
             title: "Coverage",
             content: [
-              "• ₹2 lakhs to ₹1 crore+ sum assured",
-              "• Term, whole life, and endowment plans",
-              "• Flexible policy terms (5–40 years)",
-              "• Tax benefits under 80C & 10(10D)",
-              "• Optional riders: accident, critical illness"
+              "• Covers death of cattle, buffaloes, sheep, goats, camels due to accidents, disease, or natural disasters",
+              "• Sum insured depends on type and age of animal",
+              "• Optional coverage for theft and permanent disability",
+              "• Claim settlement within 15–30 days",
+              "• Government subsidy on premium available"
+            ],
+            icon: Milk
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Indian farmer owning registered livestock",
+              "• Veterinary health certificate required for some animals",
+              "• Enrollment before specified cut-off date",
+              "• Aadhaar and bank account details required"
+            ],
+            icon: Users
+          }
+        ];
+
+      // For 'farm-machinery-insurance' (Farm Machinery Insurance)
+      case 'farm-machinery-insurance':
+        return [
+          {
+            title: "Coverage",
+            content: [
+              "• Covers tractors, harvesters, pumps, and other agricultural equipment",
+              "• Protection against fire, theft, accident, and natural disasters",
+              "• Optional add-ons: breakdown cover, transit insurance",
+              "• Quick claim settlement to avoid disruption in farm operations",
+              "• Sum insured based on machine type and value"
+            ],
+            icon: Tractor
+          },
+          {
+            title: "Eligibility",
+            content: [
+              "• Indian farmer or farm enterprise owning machinery",
+              "• Equipment registration documents required",
+              "• Bank account for premium payment",
+              "• Enrollment before usage or season start"
+            ],
+            icon: Users
+          }
+        ];
+
+      // For 'personal-accident-insurance' (Personal Accident Insurance)
+      case 'personal-accident-insurance':
+        return [
+          {
+            title: "Coverage",
+            content: [
+              "• Compensation for accidental death or permanent disability",
+              "• Optional coverage for partial disability and medical expenses",
+              "• Worldwide coverage 24x7",
+              "• Policy sum insured varies from ₹1 lakh to ₹50 lakhs",
+              "• Family financial protection in case of accident"
             ],
             icon: Shield
           },
@@ -344,142 +448,40 @@ const AnalysisModal: React.FC<AnalysisModalProps> = ({ product, isOpen, onClose 
             title: "Eligibility",
             content: [
               "• Age: 18–65 years",
-              "• Basic health checkup (for high cover)",
-              "• Income proof required",
-              "• Indian resident or NRI"
+              "• Indian resident",
+              "• Basic health declaration required",
+              "• Bank account for premium payment"
             ],
             icon: Users
           }
         ];
 
-      // For 'pmjjby'
-      case 'pmjjby':
-        return [
-          {
-            title: "Scheme Details",
-            content: [
-              "• ₹2 lakh life cover",
-              "• Premium: ₹330/year",
-              "• Renewable every year",
-              "• Covers death (any cause)",
-              "• No medical required"
-            ],
-            icon: Heart
-          },
-          {
-            title: "Eligibility",
-            content: [
-              "• Age: 18–50 years",
-              "• Savings account required",
-              "• Consent for auto-debit",
-              "• Indian resident"
-            ],
-            icon: Users
-          }
-        ];
-
-      // For 'pmsby'
-      case 'pmsby':
-        return [
-          {
-            title: "Scheme Details",
-            content: [
-              "• ₹2 lakh accident cover",
-              "• Premium: ₹12/year",
-              "• Covers accidental death/disability",
-              "• Renewable every year",
-              "• 24x7 worldwide coverage"
-            ],
-            icon: Activity
-          },
-          {
-            title: "Eligibility",
-            content: [
-              "• Age: 18–70 years",
-              "• Savings account required",
-              "• Consent for auto-debit",
-              "• Indian resident"
-            ],
-            icon: Users
-          }
-        ];
-
-      // For 'health-insurance'
-      case 'health-insurance':
+      // For 'horticulture-insurance' (Horticulture & Plantation Insurance)
+      case 'horticulture-insurance':
         return [
           {
             title: "Coverage",
             content: [
-              "• ₹1 lakh to ₹25 lakhs+ sum insured",
-              "• Covers hospitalization, surgery, daycare",
-              "• Cashless treatment at network hospitals",
-              "• Pre & post-hospitalization expenses",
-              "• Family floater & individual plans"
+              "• Covers high-value crops: fruits, vegetables, tea, coffee, rubber plantations",
+              "• Protection against natural calamities, pest & disease attacks",
+              "• Quick claim settlement after crop loss",
+              "• Premium partially subsidized by government",
+              "• Helps stabilize farmer income and reduce risk"
             ],
-            icon: Heart
+            icon: Leaf
           },
           {
             title: "Eligibility",
             content: [
-              "• Age: 18-65 years (adults)",
-              "• Children: 91 days+",
-              "• No medical for young/proposal-based",
-              "• Indian resident"
+              "• Indian farmer growing insured horticulture crops",
+              "• Land ownership or lease documents required",
+              "• Aadhaar and bank account details required",
+              "• Enrollment before sowing/plantation start"
             ],
             icon: Users
           }
         ];
 
-      // For 'general-insurance'
-      case 'general-insurance':
-        return [
-          {
-            title: "Coverage",
-            content: [
-              "• Motor, home, travel, and shop insurance",
-              "• Covers damage, theft, fire, natural calamity",
-              "• Third-party & comprehensive options",
-              "• Quick claim settlement",
-              "• Add-ons: zero depreciation, roadside assist"
-            ],
-            icon: Home
-          },
-          {
-            title: "Eligibility",
-            content: [
-              "• Asset ownership (vehicle, property, etc.)",
-              "• Valid documents (RC, address proof, etc.)",
-              "• Indian resident"
-            ],
-            icon: Users
-          }
-        ];
-
-      // For 'msme-insurance'
-      case 'msme-insurance':
-        return [
-          {
-            title: "Coverage",
-            content: [
-              "• Fire, burglary, natural calamities",
-              "• Covers stock, plant, machinery, premises",
-              "• Business interruption cover",
-              "• Customizable as per business needs",
-              "• Quick claim process"
-            ],
-            icon: Briefcase
-          },
-          {
-            title: "Eligibility",
-            content: [
-              "• Registered MSME (micro, small, medium)",
-              "• Business proof required",
-              "• Asset details for coverage",
-              "• Indian business entity"
-            ],
-            icon: Users
-          }
-        ];
 
       default:
         return [];

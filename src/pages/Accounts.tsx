@@ -56,7 +56,7 @@ const Accounts = () => {
       if (currentProduct) {
         console.log(currentProduct);
         axios.post(`${BASE_URL_AGRI}/fin/yt-search`, {
-          query: `Search top videos in ${langMap[appContext.language]} language on "${currentProduct.title}" for financial awareness and learning.`
+          query: `${currentProduct.name} for farmers in ${langMap[appContext.language]} language`
         }).then((res) => {
           console.log(res.data);
           const videos = res.data.videos;
