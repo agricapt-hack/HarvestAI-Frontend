@@ -7,6 +7,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useUser } from '@clerk/clerk-react';
 import axios from 'axios';
 import { toast } from '@/hooks/use-toast';
+import { useApp } from '@/store/AppContext';
 
 interface Message {
     id: string;
@@ -15,26 +16,26 @@ interface Message {
     timestamp: Date;
 }
 
-export const Chatbot: React.FC = () => {
-    const BASE_URL2 = import.meta.env.VITE_BACKEND_BASE_URL2;
+export const Chatbot2: React.FC = () => {
     const BASE_URL_AGRI = import.meta.env.VITE_BACKEND_BASE_URL_AGRI;
+    const appContext = useApp();
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
             type: 'bot',
-            content: "Hello, I am Harvest.AI Assistant. Your personal AI financial advisor — here to answer your queries.",
+            content: "Hello, I am Harvest.AI Assistant. Your personal AI advisor for this farm.",
             timestamp: new Date()
         },
         {
             id: '2',
             type: 'bot',
-            content: 'This application is filled with useful tools to help you understand topics like savings, budgeting, credit, and government schemes. I can guide you based on your needs and preferences.',
+            content: "I know the details of your soil, weather, and crops — I understand your whole farm well.",
             timestamp: new Date()
         },
         {
             id: '3',
             type: 'bot',
-            content: 'How can I assist you today?',
+            content: "Ask me anything — I'm here to help you grow smarter in this field.",
             timestamp: new Date()
         },
     ]);
@@ -131,8 +132,9 @@ export const Chatbot: React.FC = () => {
             return;
         }
 
-        axios.post(`${BASE_URL_AGRI}/chat/general-chat`, {
+        axios.post(`${BASE_URL_AGRI}/chat/field-chat`, {
             // user_id: user?.username,
+            sensor_hub_id: appContext.selectedField.hubCode,
             query: lowerMessage
         }).then((res) => {
             const response = res.data.response;
@@ -289,7 +291,7 @@ export const Chatbot: React.FC = () => {
                 </div>
 
                 <p className="text-xs text-gray-500 mt-2 text-center italic">
-                    💡 Try: "explain crop insurance benefits" or "guide me on soil testing"
+                    💡 Try: "how to resolve irrigation" or "guide me on soil testing"
                 </p>
             </div>
         </div>

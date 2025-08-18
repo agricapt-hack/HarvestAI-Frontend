@@ -3,11 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Sparkles, MessageCircle, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Chatbot } from './Chatbot';
-import { useNavigate } from 'react-router-dom';
 
 export const FloatingWizard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <>
@@ -40,9 +38,7 @@ export const FloatingWizard = () => {
           </DialogHeader>
           
           <div className="flex-1 overflow-hidden">
-            <Chatbot onNavigate={(section) => {
-              navigate(section);
-            }} />
+            <Chatbot />
           </div>
         </DialogContent>
       </Dialog>

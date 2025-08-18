@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bell, MapPin, Calendar, Sprout, Camera, Upload, MessageCircle, CheckCircle } from "lucide-react";
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,6 +22,7 @@ import { Button } from './ui/button';
 import { toast } from '@/hooks/use-toast';
 import { Textarea } from './ui/textarea';
 import { useApp } from '@/store/AppContext';
+import { FloatingWizard2 } from './FloatingWizard2';
 
 ChartJS.register(
   CategoryScale,
@@ -584,6 +585,10 @@ const FieldDetailsModal: React.FC<FieldDetailsModalProps> = ({ field, isOpen, on
                 ))}
               </div>
             )}
+          </div>
+
+          <div className='flex items-center justify-center'>
+            <FloatingWizard2 />
           </div>
 
           <h2>Sensor Data</h2>
