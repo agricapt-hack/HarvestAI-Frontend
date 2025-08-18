@@ -53,8 +53,6 @@ const FlowchartModal: React.FC<FlowchartModalProps> = ({ isOpen, onClose }) => {
     //   `Step ${index + 1}: ${step.title}. ${step.description}.`
     // ).join(' ')}`
     const explanation = product.flow_description;
-
-    alert(explanation);
     
     // Voice explanation using Web Speech API
     if ('speechSynthesis' in window) {
@@ -212,7 +210,7 @@ const FlowchartModal: React.FC<FlowchartModalProps> = ({ isOpen, onClose }) => {
         </div>
         
         {/* Prompt Generation Section */}
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+        {/* <div className="mt-6 p-4 bg-gray-50 rounded-lg">
           <h4 className="text-sm font-semibold mb-3">Generate New Workflow</h4>
           <div className="flex gap-2">
             <Input
@@ -229,7 +227,7 @@ const FlowchartModal: React.FC<FlowchartModalProps> = ({ isOpen, onClose }) => {
               Generate
             </Button>
           </div>
-        </div>
+        </div> */}
 
         
         <div className="flex justify-center mt-4 space-x-4">

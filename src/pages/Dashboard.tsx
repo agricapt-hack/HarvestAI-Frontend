@@ -498,7 +498,7 @@ const Dashboard = () => {
                                 </Card>
                             </TabsContent> */}
 
-                            <div className="pt-6">
+                            {/* <div className="pt-6">
                                 <Button
                                     onClick={handleSave}
                                     disabled={isLoading}
@@ -507,7 +507,7 @@ const Dashboard = () => {
                                     <Save className="h-4 w-4 mr-2" />
                                     {isLoading ? "Saving..." : "Save Changes"}
                                 </Button>
-                            </div>
+                            </div> */}
                         </Tabs>
                     </div>
                 </div>

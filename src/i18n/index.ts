@@ -15,8 +15,8 @@ const resources = {
 
       // Hero Section
       "heroTag1": "Educate Finance",
-      "heroTag2": "Guiding You to a Better Tomorrow",
-      "heroDescription": "Explore financial solutions through interactive, AI-powered conversations. Receive personalized guidance and support tailored to your journey",
+      "heroTag2": "Smart Farming For Tomorrow",
+      "heroDescription": "Learn and manage your farm finances with personalized, AI-powered advice. Receive guidance on loans, insurance, and crop planning to help your farm and income flourish.",
       "happyWomen": "Happy Women",
       "loansApproved": "Loans Approved",
       "aiSupport": "AI Support",
@@ -90,7 +90,7 @@ const resources = {
 
       // Call to Action
       "readyToTransform": "Ready to Transform Your Ambitions into Action?",
-      "joinThousands": "Join thousands of women who have already improved their financial situation",
+      "joinThousands": "Join thousands of farmers who have already improved their financial situation",
       "startJourney": "Start Your Journey Today",
 
       // Language Selector
@@ -124,7 +124,7 @@ const resources = {
   hi: {
     translation: {
       // Header
-      "nariShakti": "आरोहण",
+      "nariShakti": "हार्वेस्ट.एआई",
       "financialCompanion": "आपका वित्तीय साथी",
       "loans": "ऋण",
       "accounts": "खाते",
@@ -132,9 +132,9 @@ const resources = {
       "getStarted": "शुरू करें",
 
       // Hero Section
-      "heroTag1": "वित्तीय शिक्षा",
-      "heroTag2": "आपके उज्जवल कल की दिशा में मार्गदर्शन",
-      "heroDescription": "इंटरैक्टिव, एआई-संचालित बातचीत के माध्यम से वित्तीय समाधान खोजें। अपने सफर के अनुसार व्यक्तिगत मार्गदर्शन और समर्थन प्राप्त करें।",
+      "heroTag1": "वित्त शिक्षा",
+      "heroTag2": "भविष्य के लिए स्मार्ट खेती",
+      "heroDescription": "व्यक्तिगत, एआई-सक्षम सलाह के साथ अपने कृषि वित्त का प्रबंधन और सीखें। अपने खेत और आय को बढ़ाने के लिए ऋण, बीमा और फसल योजना पर मार्गदर्शन प्राप्त करें।",
       "happyWomen": "खुश महिलाएं",
       "loansApproved": "स्वीकृत ऋण",
       "aiSupport": "एआई सहायता",
@@ -207,7 +207,7 @@ const resources = {
 
       // Call to Action
       "readyToTransform": "क्या आप अपने सपनों को साकार करना चाहते हैं?",
-      "joinThousands": "उन हजारों महिलाओं से जुड़ें जिन्होंने अपनी वित्तीय स्थिति बेहतर की है।",
+      "joinThousands": "हजारों किसानों में शामिल हों जिन्होंने पहले ही अपनी वित्तीय स्थिति सुधारी है",
       "startJourney": "अपनी यात्रा आज ही शुरू करें",
 
       // Language Selector
@@ -241,7 +241,7 @@ const resources = {
   bn: {
     translation: {
       // Header
-      "nariShakti": "আরোহন",
+      "nariShakti": "হারভেস্ট.এআই",
       "financialCompanion": "আপনার আর্থিক বন্ধু",
       "loans": "ঋণ",
       "accounts": "হিসাব",
@@ -249,9 +249,9 @@ const resources = {
       "getStarted": "শুরু করুন",
 
       // Hero Section
-      "heroTag1": "আর্থিক শিক্ষায় শিক্ষিত হোন",
-      "heroTag2": "একটি উন্নত আগামীর পথে আপনাকে পথপ্রদর্শন",
-      "heroDescription": "ইন্টার‌্যাকটিভ, কৃত্রিম বুদ্ধিমত্তা-চালিত কথোপকথনের মাধ্যমে আর্থিক সমাধান অন্বেষণ করুন। আপনার যাত্রার জন্য উপযুক্ত ব্যক্তিগত পরামর্শ ও সহায়তা পান।",
+      "heroTag1": "আর্থিক শিক্ষা",
+      "heroTag2": "ভবিষ্যতের জন্য স্মার্ট চাষ",
+      "heroDescription": "ব্যক্তিগত, এআই-সক্ষম পরামর্শের মাধ্যমে আপনার কৃষি অর্থ পরিচালনা এবং শিখুন। ঋণ, বীমা এবং ফসল পরিকল্পনা নিয়ে নির্দেশনা পান যাতে আপনার খামার এবং আয় বৃদ্ধি পায়।",
       "happyWomen": "সন্তুষ্ট নারী",
       "loansApproved": "অনুমোদিত ঋণ",
       "aiSupport": "এআই সহায়তা",
@@ -324,7 +324,7 @@ const resources = {
 
       // Call to Action
       "readyToTransform": "আপনার লক্ষ্যকে বাস্তবে রূপ দিতে প্রস্তুত?",
-      "joinThousands": "হাজার হাজার নারীর সাথে যোগ দিন যারা ইতিমধ্যেই তাদের আর্থিক অবস্থা উন্নত করেছেন",
+      "joinThousands": "হাজার হাজার কৃষকের সঙ্গে যোগ দিন যারা ইতিমধ্যে তাদের আর্থিক পরিস্থিতি উন্নত করেছেন",
       "startJourney": "আজই আপনার যাত্রা শুরু করুন",
 
       // Language Selector
@@ -358,7 +358,7 @@ const resources = {
   mr: {
     translation: {
       // Header
-      "nariShakti": "आरोहन",
+      "nariShakti": "हार्वेस्ट.एआय",
       "financialCompanion": "तुमचा आर्थिक मित्र",
       "loans": "कर्जे",
       "accounts": "खाते",
@@ -367,8 +367,9 @@ const resources = {
 
       // Hero Section
       "heroTag1": "आर्थिक शिक्षण",
-      "heroTag2": "उत्तम उद्याच्या दिशेने मार्गदर्शन",
-      "heroDescription": "इंटरॅक्टिव्ह, एआय-सक्षम संवादांद्वारे आर्थिक उपाय शोधा. तुमच्या गरजेनुसार वैयक्तिक मार्गदर्शन व सहाय्य मिळवा.",
+      "heroTag2": "उद्याच्या शेतीसाठी स्मार्ट",
+      "heroDescription": "वैयक्तिक, एआय-सक्षम मार्गदर्शनासह आपल्या शेतातील आर्थिक गोष्टी शिका आणि व्यवस्थापित करा. कर्ज, विमा आणि पीक नियोजनावर मार्गदर्शन मिळवा जेणेकरून आपले शेत आणि उत्पन्न वाढेल.",
+
       "happyWomen": "आनंदी महिला",
       "loansApproved": "मंजूर कर्जे",
       "aiSupport": "एआय सहाय्य",
@@ -441,7 +442,7 @@ const resources = {
 
       // Call to Action
       "readyToTransform": "तुमची स्वप्ने कृतीत आणण्यासाठी तयार आहात का?",
-      "joinThousands": "हजारो महिलांमध्ये सामील व्हा ज्यांनी त्यांच्या आर्थिक स्थितीत सुधारणा केली आहे",
+      "joinThousands": "हजारो शेतकऱ्यांमध्ये सामील व्हा ज्यांनी आधीच आपली आर्थिक स्थिती सुधारली आहे",
       "startJourney": "आजच तुमची वाटचाल सुरू करा",
 
       // Language Selector
@@ -475,7 +476,7 @@ const resources = {
   kn: {
     translation: {
       // Header
-      "nariShakti": "ಆರೋಹಣ",
+      "nariShakti": "ಹಾರ್ವೆಸ್ಟ್.ಎಐ",
       "financialCompanion": "ನಿಮ್ಮ ಆರ್ಥಿಕ ಸಂಗಾತಿ",
       "loans": "ಣಗಳು",
       "accounts": "ಖಾತೆಗಳು",
@@ -483,9 +484,9 @@ const resources = {
       "getStarted": "ಪ್ರಾರಂಭಿಸಿ",
 
       // Hero Section
-      "heroTag1": "ಆರ್ಥಿಕ ಶಿಕ್ಷಣ",
-      "heroTag2": "ಉತ್ತಮ ನಾಳೆಯ ಕಡೆ ನಿಮ್ಮನ್ನು ಮುನ್ನಡೆಸುವುದು",
-      "heroDescription": "ಸಕ್ರಿಯ ಎಐ ಸಂಭಾಷಣೆಗಳ ಮೂಲಕ ಆರ್ಥಿಕ ಪರಿಹಾರಗಳನ್ನು ಅನ್ವೇಷಿಸಿ. ನಿಮ್ಮ ಪ್ರಯಾಣಕ್ಕೆ ಅನುಗುಣವಾಗಿ ವೈಯಕ್ತಿಕ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ಬೆಂಬಲವನ್ನು ಪಡೆಯಿರಿ.",
+      "heroTag1": "ಹಣಕಾಸು ಶಿಕ್ಷಣ",
+      "heroTag2": "ಭವಿಷ್ಯದಕ್ಕಾಗಿ ಸ್ಮಾರ್ಟ್ ಕೃಷಿ",
+      "heroDescription": "ವೈಯಕ್ತಿಕ, ಎಐ-ಚಾಲಿತ ಸಲಹೆ ಮೂಲಕ ನಿಮ್ಮ ಕೃಷಿ ಹಣಕಾಸು ನಿರ್ವಹಣೆ ಮತ್ತು ಕಲಿಯಿರಿ. ಸಾಲ, ವಿಮೆ ಮತ್ತು ಬೆಳೆ ಯೋಜನೆಗಳ ಮೇಲೆ ಮಾರ್ಗದರ್ಶನವನ್ನು ಪಡೆಯಿರಿ ನಿಮ್ಮ ತೋಟ ಮತ್ತು ಆದಾಯವನ್ನು ಬೆಳಸಲು.",
       "happyWomen": "ಸಂತೋಷದ ಮಹಿಳೆಯರು",
       "loansApproved": "ಅನುಮೋದಿತ ণಗಳು",
       "aiSupport": "ಎಐ ಬೆಂಬಲ",
@@ -558,7 +559,7 @@ const resources = {
 
       // Call to Action
       "readyToTransform": "ನಿಮ್ಮ ಉದ್ದೇಶಗಳನ್ನು ಕಾರ್ಯರೂಪಕ್ಕೆ ತರಲು ಸಿದ್ಧರಾಗಿದ್ದೀರಾ?",
-      "joinThousands": "ಆರ್ಥಿಕ ಸ್ಥಿತಿಯನ್ನು ಸುಧಾರಿಸಿಕೊಂಡ ಸಾವಿರಾರು ಮಹಿಳೆಯರೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ",
+      "joinThousands": "ಸಾವಿರಾರು ರೈತರು ಈಗಾಗಲೇ ತಮ್ಮ ಹಣಕಾಸಿನ ಸ್ಥಿತಿಯನ್ನು ಸುಧಾರಿಸಿಕೊಂಡಿದ್ದಾರೆ; ಅವರಿಗೆ ಸೇರಿ",
       "startJourney": "ಇಂದೇ ನಿಮ್ಮ ಪ್ರಯಾಣ ಆರಂಭಿಸಿ",
 
       // Language Selector

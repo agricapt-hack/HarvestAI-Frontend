@@ -20,7 +20,7 @@ const Index = () => {
       {/* <FloatingWizard /> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* <div className="text-center mb-16 relative">
+        <div className="text-center mb-16 relative">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-10 left-10 w-20 h-20 bg-green-200 rounded-full opacity-50 animate-pulse"></div>
             <div className="absolute top-20 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-40 animate-bounce delay-1000"></div>
@@ -38,7 +38,7 @@ const Index = () => {
               {t('heroDescription')}
             </p>
           </div>
-        </div> */}
+        </div>
 
         {user && <FieldManagement />}
 
@@ -55,7 +55,7 @@ const Index = () => {
 
         {/* <BankContactSection /> */}
 
-        {/* {!user && <div className="text-center">
+        {!user && <div className="text-center">
           <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-12 text-white shadow-2xl">
             <h3 className="text-3xl font-bold mb-4">{t('readyToTransform')}</h3>
             <p className="text-xl mb-8 opacity-90">{t('joinThousands')}</p>
@@ -66,7 +66,7 @@ const Index = () => {
               {t('startJourney')}
             </Button>
           </div>
-        </div>} */}
+        </div>}
       </div>
     </div>
   );
