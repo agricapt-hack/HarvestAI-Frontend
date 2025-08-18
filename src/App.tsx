@@ -13,6 +13,8 @@ import Dashboard from "./pages/Dashboard";
 import SSOCallback from "./pages/SSOCallback";
 import Recordings from "./pages/Recordings";
 import Insurance from "./pages/Insurance";
+import Marketplace from "./pages/Marketplace";
+import MarketplaceProductDetail from "./pages/MarketplaceProductDetail";
 // import { FloatingWizard } from "./components/FloatingWizard";
 
 const queryClient = new QueryClient();
@@ -34,6 +36,8 @@ const App = () => (
             <Route path="/recordings" element={<Recordings />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/sso-callback" element={<SSOCallback />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/marketplace/:id" element={<MarketplaceProductDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

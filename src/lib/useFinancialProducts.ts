@@ -5,6 +5,7 @@ export const useFinancialProducts = (type = "all") => {
   const { t } = useTranslation();
 
   const allProducts = [
+    // LOANS
     {
       id: "kisan-credit-card",
       type: "loan",
@@ -160,6 +161,53 @@ export const useFinancialProducts = (type = "all") => {
       title: t('horticultureInsurance'),
       description: t('horticultureInsuranceDesc'),
       icon: HandHeart,
+      color: "bg-purple-100 text-purple-700",
+    },
+
+    // MARKETPLACE DEMO PRODUCTS
+    {
+      id: "seed-purchase",
+      type: "marketplace",
+      name: "Seeds",
+      title: t("marketplaceSeeds") || "High-Yield Seeds",
+      description: t("marketplaceSeedsDesc") || "Buy certified, quality seeds for your crops.",
+      icon: Sprout,
+      color: "bg-yellow-100 text-yellow-700",
+    },
+    {
+      id: "fertilizer-purchase",
+      type: "marketplace",
+      name: "Fertilizers",
+      title: t("marketplaceFertilizers") || "Organic & Chemical Fertilizers",
+      description: t("marketplaceFertilizersDesc") || "Shop a wide range of fertilizers for soil health.",
+      icon: Handshake,
+      color: "bg-green-100 text-green-700",
+    },
+    {
+      id: "agri-machinery-rental",
+      type: "marketplace",
+      name: "Machinery Rental",
+      title: t("marketplaceMachinery") || "Agri-Machinery Rental",
+      description: t("marketplaceMachineryDesc") || "Rent tractors, tillers, and other agricultural equipment.",
+      icon: Tractor,
+      color: "bg-blue-100 text-blue-700",
+    },
+    {
+      id: "crop-sell",
+      type: "marketplace",
+      name: "Sell Crops",
+      title: t("marketplaceSellCrop") || "Sell Your Harvest",
+      description: t("marketplaceSellCropDesc") || "Connect to buyers or local mandis to sell your crops.",
+      icon: Box,
+      color: "bg-orange-100 text-orange-700",
+    },
+    {
+      id: "farm-services",
+      type: "marketplace",
+      name: "Farm Services",
+      title: t("marketplaceServices") || "Farm Labour & Services",
+      description: t("marketplaceServicesDesc") || "Find planting, harvesting, irrigation and drone-spraying services.",
+      icon: User,
       color: "bg-purple-100 text-purple-700",
     },
   ];

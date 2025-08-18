@@ -34,6 +34,7 @@ const Navbar = ({ onLoginClick }) => {
           <div className="flex items-center">
             <p className="text-m text-black-600 mr-5 font-semibold cursor-pointer" onClick={() => navigate("/loans")}>{t("loans")}</p>
             <p className="text-m text-black-600 mr-5 font-semibold cursor-pointer" onClick={() => navigate("/insurance")}>{t("insurance")}</p>
+            <p className="text-m text-black-600 mr-5 font-semibold cursor-pointer" onClick={() => navigate("/marketplace")}>{t("marketplace")}</p>
             {/* <p className="text-m text-black-600 mr-5 font-semibold cursor-pointer" onClick={() => navigate("/accounts")}>{t("accounts")}</p> */}
             {/* <p className="text-m text-black-600 mr-5 font-semibold cursor-pointer" onClick={() => navigate("/recordings")}>{t("recordings")}</p> */}
             <LanguageSelector />
